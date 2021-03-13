@@ -8,13 +8,13 @@
  인터넷 상에 존재하는 다양한 정보들을 활용하여 전공에 적합한 노트북을 추천하는 것이 목표이다.
 
 ### 기술스택
-언어 : java, js, python
-프레임워크 : Spring boot, Django, Pytorch
-데이터베이스 : mysql or neo4j
-ORM : JPA, query dsl
-Build tool : Gradle
+* 언어 : java, js, python
+* 프레임워크 : Spring boot, Django, Pytorch
+* 데이터베이스 : mysql or neo4j
+* ORM : JPA, query dsl
+* Build tool : Gradle
 
-OS : Mac OS
-IDE : Intellij, VScode
-서버 : aws
-CI/CD : docker + jenkins
+* OS : Mac OS
+* IDE : Intellij, VScode
+* 서버 : aws
+* CI/CD : docker + jenkins
