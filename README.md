@@ -18,3 +18,6 @@
 * IDE : Intellij, VScode
 * 서버 : aws
 * CI/CD : docker + jenkins
+
+### 전공별 노트북 사양 데이터 수집을 위한 설문조사 
+* [설문조사 링크](https://docs.google.com/forms/d/1zzALaBEOnt_9-ysxn4kaH6MlEbHc2pRQ6lBR6gJ_B_o)
