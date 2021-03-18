@@ -1,22 +1,27 @@
 package com.github.ckdgus08.domain.enum_;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 public enum MajorGroup {
 
     // TODO: 2021/03/13 전공, 프로그램 분류하기
 
-    공통("공통", Arrays.asList(PurposeType._온라인강의)),
-    기계("기계", Arrays.asList(PurposeType._오토캐드, PurposeType._솔리드웍스)),
-    인문("인문", Arrays.asList(PurposeType._R프로그래밍));
+    HUMANITY("인문사회계열", Arrays.asList(MajorType.행정학과, MajorType.경제학과)),
+    SCIENCE("자연과학계열", Arrays.asList(MajorType.생명과학과, MajorType.산림과학과)),
+    ENGINEERING("공학기술계열", Arrays.asList(MajorType.섬유공학과, MajorType.기계공학과)),
+    ART("영상예술계열", Arrays.asList(MajorType.산업디자인학과, MajorType.서양화과)),
+    COMPUTER("컴퓨터계열", Arrays.asList(MajorType.컴퓨터공학과, MajorType.소프트웨어학과));
 
-    private String title;
-    private List<PurposeType> purposeList;
+    private final String title;
+    private final List<MajorType> majorTypes;
 
-    MajorGroup(String title, List<PurposeType> purposeList) {
+    MajorGroup(String title, List<MajorType> majorTypes) {
         this.title = title;
-        this.purposeList = purposeList;
+        this.majorTypes = majorTypes;
     }
 
     public String getTitle() {
