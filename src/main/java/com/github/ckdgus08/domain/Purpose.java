@@ -1,6 +1,7 @@
 package com.github.ckdgus08.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.ckdgus08.domain.enum_.PurposeType;
 import com.github.ckdgus08.domain.enum_.Status;
 import lombok.*;
 
@@ -23,7 +24,8 @@ public class Purpose extends BaseEntity {
     private Long id;
 
     @Column(length = 20)
-    private String purposeType;
+    @Enumerated(EnumType.STRING)
+    private PurposeType purposeType;
 
     private Status status;
 
@@ -45,7 +47,7 @@ public class Purpose extends BaseEntity {
 
     private int ssd;
 
-    public Purpose(String purposeType) {
+    public Purpose(PurposeType purposeType) {
         this.id = null;
         this.status = Status.NONE;
         this.purposeType = purposeType;
