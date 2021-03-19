@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
+@Builder
 @ToString(of = {"id", "detail", "title", "content"})
 public class Review extends BaseEntity {
     @Id
@@ -30,7 +31,7 @@ public class Review extends BaseEntity {
     private String content;
 
     @OneToMany(mappedBy = "review")
-    private List<Review_deep> review_deeps = new ArrayList<>();
+    private final List<Review_deep> review_deeps = new ArrayList<>();
 
     public Review(Notebook notebook, String detail, String title, String content) {
         this.id = null;

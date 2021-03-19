@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @ToString(of = {"id", "model", "price", "weight", "inch", "company", "ram", "ssd", "cpu", "gpu"})
 public class Notebook extends BaseEntity {
 
@@ -27,7 +28,8 @@ public class Notebook extends BaseEntity {
 
     private Float inch;
 
-    private Company company;
+    @OneToMany(mappedBy = "notebook")
+    private final List<NotebookPurpose> notebookPurposes = new ArrayList<>();
 
     private OS os;
 
@@ -41,12 +43,10 @@ public class Notebook extends BaseEntity {
     private Integer ram;
     private Integer ssd;
     private Integer hdd;
-
     @OneToMany(mappedBy = "notebook")
-    private List<NotebookPurpose> notebookPurposes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "notebook")
-    private List<Review> reviews = new ArrayList<>();
+    private final List<Review> reviews = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private Company company;
 
     public Notebook(Company company) {
         this.company = company;

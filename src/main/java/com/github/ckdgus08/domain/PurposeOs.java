@@ -1,15 +1,15 @@
 package com.github.ckdgus08.domain;
 
 import com.github.ckdgus08.domain.enum_.OS;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
+@Builder
 @ToString(of = {"id", "os"})
 public class PurposeOs {
 

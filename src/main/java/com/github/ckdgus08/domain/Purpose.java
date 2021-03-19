@@ -11,8 +11,10 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @ToString(of = {"purposeType", "status"})
 public class Purpose extends BaseEntity {
     //  윈도우 맥
@@ -31,21 +33,19 @@ public class Purpose extends BaseEntity {
 
     @JsonIgnore
     @OneToMany(mappedBy = "purpose")
-    private List<PurposeOs> purposeOses = new ArrayList<>();
+    private final List<PurposeOs> purposeOses = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "purpose")
-    private List<PurposeCpu> purposeCpus = new ArrayList<>();
+    private final List<PurposeCpu> purposeCpus = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "purpose")
-    private List<PurposeGpu> purposeGpus = new ArrayList<>();
+    private final List<PurposeGpu> purposeGpus = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "purpose")
-    private List<PurposeRam> purposeRams = new ArrayList<>();
-
-    private int ssd;
+    private final List<PurposeRam> purposeRams = new ArrayList<>();
 
     public Purpose(PurposeType purposeType) {
         this.id = null;

@@ -2,18 +2,17 @@ package com.github.ckdgus08.domain;
 
 import com.github.ckdgus08.domain.enum_.OS;
 import com.github.ckdgus08.domain.enum_.SpecLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@ToString(of = {"id", "os", "specLevel", "core", "ghz", "intel_score", "amd_score", "cpu"})
+@Builder
+@ToString(of = {"id", "os", "specLevel", "cpu"})
 public class PurposeCpu {
 
     @Id
@@ -28,13 +27,6 @@ public class PurposeCpu {
 
     private SpecLevel specLevel;
 
-    private Integer core;
-
-    private Float ghz;
-
-    private Integer intel_score;
-    private Integer amd_score;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cpu_id")
     private Cpu cpu;
@@ -47,15 +39,7 @@ public class PurposeCpu {
             addCpuToPurpose(purpose);
     }
 
-    public PurposeCpu(Purpose purpose, Integer core, Integer intel_score, Integer amd_score, Float ghz, OS os, SpecLevel specLevel) {
-        if (core != null)
-            this.core = core;
-        if (ghz != null)
-            this.ghz = ghz;
-        if (intel_score != null)
-            this.intel_score = intel_score;
-        if (amd_score != null)
-            this.amd_score = amd_score;
+    public PurposeCpu(Purpose purpose, OS os, SpecLevel specLevel) {
         this.os = os;
         this.specLevel = specLevel;
         if (purpose != null)

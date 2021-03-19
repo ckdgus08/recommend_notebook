@@ -1,14 +1,17 @@
 package com.github.ckdgus08.domain;
 
+import com.github.ckdgus08.domain.enum_.CPUType;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
 @Setter
-@ToString(of = {"company", "name", "core", "thread", "origin_ghz", "max_ghz", "score"})
+@Builder
+@ToString(of = {"company", "model", "core", "thread", "origin_ghz", "max_ghz", "score"})
 public class Cpu extends BaseEntity {
 
     @Id
@@ -17,13 +20,13 @@ public class Cpu extends BaseEntity {
     private Long id;
 
     @Column(length = 5)
-    private String company;
+    private CPUType company;
 
     @Column(length = 25)
     private String code_name;
 
     @Column(length = 40)
-    private String name;
+    private String model;
 
     @Column(length = 15)
     private String generation;
@@ -37,17 +40,17 @@ public class Cpu extends BaseEntity {
 
     private Integer score;
 
-    public Cpu(String company, String generation, String code_name, String name, Integer core, Integer score) {
+    public Cpu(CPUType company, String generation, String code_name, String model, Integer core, Integer score) {
         this.id = null;
         this.company = company;
         this.generation = generation;
-        this.name = name;
+        this.model = model;
         this.core = core;
         this.code_name = code_name;
         this.score = score;
     }
 
-    public Cpu(String company, Integer core, Float origin_ghz, Integer score) {
+    public Cpu(CPUType company, Integer core, Float origin_ghz, Integer score) {
         this.id = null;
         this.company = company;
         this.core = core;
@@ -55,7 +58,7 @@ public class Cpu extends BaseEntity {
         this.score = score;
     }
 
-    public Cpu(String company) {
+    public Cpu(CPUType company) {
         this.company = company;
     }
 }

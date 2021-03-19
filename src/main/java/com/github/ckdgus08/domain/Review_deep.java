@@ -2,10 +2,7 @@ package com.github.ckdgus08.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.ckdgus08.domain.enum_.ReviewType;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
+@Builder
 public class Review_deep extends BaseEntity {
 
     @Id

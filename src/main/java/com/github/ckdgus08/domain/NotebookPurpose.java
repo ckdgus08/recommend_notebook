@@ -1,11 +1,15 @@
 package com.github.ckdgus08.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class NotebookPurpose extends BaseEntity {
 
     @Id
