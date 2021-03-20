@@ -72,7 +72,25 @@ public class NotebookServiceTest {
     }
 
     @Test
+    void 검색정렬순서() {
+        //given
+
+        //when
+
+        //then
+    }
+
+    @Test
     void 사양별_노트북목록_검색() {
+        //given
+
+        //when
+
+        //then
+    }
+
+    @Test
+    void 검색후_같은전공_리뷰검증() {
         //given
 
         //when
