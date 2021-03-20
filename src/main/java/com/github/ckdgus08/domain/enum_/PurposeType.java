@@ -1,6 +1,8 @@
 package com.github.ckdgus08.domain.enum_;
 
 public enum PurposeType {
+
+    _테스트,
     // 프로그램 명
 
     //공통
