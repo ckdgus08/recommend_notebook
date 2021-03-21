@@ -1,7 +1,8 @@
 package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.*;
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.CpuType;
+import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.domain.enum_.PurposeType;
 import com.github.ckdgus08.domain.enum_.SpecLevel;
 import com.github.ckdgus08.repository.PurposeCpuRepository;
@@ -12,8 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +27,7 @@ public class PurposeService {
     private final PurposeRamRepository purposeRamRepository;
 
     @Transactional
-    public Cpu add_require_cpu(PurposeType purposeType, Cpu cpu, OS os, SpecLevel specLevel) {
+    public Cpu add_require_cpu(PurposeType purposeType, Cpu cpu, Os os, SpecLevel specLevel) {
 
         Optional<Purpose> purpose = purposeRepository.findByPurposeType(purposeType);
 
@@ -46,7 +46,7 @@ public class PurposeService {
     }
 
     @Transactional
-    public Gpu add_require_gpu(PurposeType purposeType, Gpu gpu, OS os, SpecLevel specLevel) {
+    public Gpu add_require_gpu(PurposeType purposeType, Gpu gpu, Os os, SpecLevel specLevel) {
 
         Optional<Purpose> purpose = purposeRepository.findByPurposeType(purposeType);
 
@@ -65,7 +65,7 @@ public class PurposeService {
     }
 
     @Transactional
-    public Integer add_require_ram(PurposeType purposeType, Integer ram, OS os, SpecLevel specLevel) {
+    public Integer add_require_ram(PurposeType purposeType, Integer ram, Os os, SpecLevel specLevel) {
 
         Optional<Purpose> purpose = purposeRepository.findByPurposeType(purposeType);
 
@@ -81,6 +81,22 @@ public class PurposeService {
             return ram;
         }
         throw new IllegalStateException("이미 등록된 RAM입니다.");
+    }
+
+    public Map<CpuType, Set<Integer>> select_cpu_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+
+        return purposes.stream()
+                .flatMap(p -> p.getPurposeCpus().stream())
+                .filter(c -> c.getOs() == os)
+                .filter(c -> c.getSpecLevel() == specLevel)
+                .collect(Collectors.groupingBy(
+                        c -> c.getCpu().getCompany(),
+                        HashMap::new,
+                        Collectors.mapping(c -> c.getCpu().getScore(), Collectors.toSet())
+                ));
+
+        // TODO: 2021/03/22 Map<CpuType, Set<Integer>> -> Map<CpuType, Integer> 로 한번에 처리하는 방법 생각
     }
 
 }
