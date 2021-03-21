@@ -64,13 +64,4 @@ public class CpuServiceTest {
         );
     }
 
-    @Test
-    void 씨피유_최적사양선택() {
-        //given
-
-        //when
-
-        //then
-    }
-
 }

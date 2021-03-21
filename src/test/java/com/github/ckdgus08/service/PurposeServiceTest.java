@@ -7,6 +7,7 @@ import com.github.ckdgus08.domain.enum_.*;
 import com.github.ckdgus08.repository.CpuRepository;
 import com.github.ckdgus08.repository.GpuRepository;
 import com.github.ckdgus08.repository.PurposeRepository;
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Map;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
@@ -41,7 +44,7 @@ public class PurposeServiceTest {
             purposeRepository.save(new Purpose(purposeType));
         }
 
-        Cpu cpu = Cpu.builder()
+        Cpu cpu1 = Cpu.builder()
                 .company(CPUType.INTEL)
                 .core(4)
                 .max_ghz(4.4f)
@@ -49,8 +52,26 @@ public class PurposeServiceTest {
                 .thread(8)
                 .score(10655)
                 .build();
+        Cpu cpu2 = Cpu.builder()
+                .company(CPUType.INTEL)
+                .core(10)
+                .max_ghz(3.7f)
+                .model("i9-10900X")
+                .thread(20)
+                .score(22742)
+                .build();
+        Cpu cpu3 = Cpu.builder()
+                .company(CPUType.AMD)
+                .core(8)
+                .max_ghz(4.6f)
+                .model("Ryzen 9 5900HS")
+                .thread(16)
+                .score(23165)
+                .build();
 
-        em.persist(cpu);
+        em.persist(cpu1);
+        em.persist(cpu2);
+        em.persist(cpu3);
 
         Gpu gpu1 = Gpu.builder()
                 .company(GPUType.NVIDIA)
@@ -162,6 +183,72 @@ public class PurposeServiceTest {
     }
 
     @Test
+    void 여러프로그램_최적CPU_선택() {
+        //given
+        PurposeType[] purposeType = Arrays.array(PurposeType._테스트, PurposeType._2D캐드);
+
+        Cpu cpu1 = cpuRepository.findByModel("i5-1145G7").get(0);
+        Cpu cpu2 = cpuRepository.findByModel("i9-10900X").get(0);
+        Cpu cpu3 = cpuRepository.findByModel("Ryzen 9 5900HS").get(0);
+
+        //when
+        purposeService.add_require_cpu(
+                purposeType[0],
+                cpu1,
+                OS.window,
+                SpecLevel.최소사양
+        );
+        purposeService.add_require_cpu(
+                purposeType[0],
+                cpu2,
+                OS.window,
+                SpecLevel.최소사양
+        );
+        purposeService.add_require_cpu(
+                purposeType[1],
+                cpu1,
+                OS.window,
+                SpecLevel.최소사양
+        );
+        purposeService.add_require_cpu(
+                purposeType[1],
+                cpu3,
+                OS.window,
+                SpecLevel.최소사양
+        );
+
+        //when
+        Map<CPUType, Set<Integer>> map = purposeService.select_cpu_from_purposeType_array(
+                purposeType, OS.window, SpecLevel.최소사양);
+
+
+        assertThat(22742).isEqualTo(map.get(CPUType.INTEL).stream().max(Integer::compare).get());
+        assertThat(23165).isEqualTo(map.get(CPUType.AMD).stream().max(Integer::compare).get());
+
+
+        //then
+    }
+
+    @Test
+    void 여러프로그램_최적GPU_선택() {
+        //given
+
+        //when
+
+        //then
+    }
+
+
+    @Test
+    void 프로그램선택_최적사양선택() {
+        //given
+
+        //when
+
+        //then
+    }
+
+    @Test
     void 프로그램사양_선택안할시_전공에따라_기본등록() {
         //given
 
@@ -172,15 +259,6 @@ public class PurposeServiceTest {
 
     @Test
     void 사용못하는_운영체제_검사() {
-        //given
-
-        //when
-
-        //then
-    }
-
-    @Test
-    void 프로그램선택_최적사양선택() {
         //given
 
         //when
