@@ -1,6 +1,6 @@
 package com.github.ckdgus08.domain;
 
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.domain.enum_.SpecLevel;
 import lombok.*;
 
@@ -22,14 +22,14 @@ public class PurposeGpu {
     @JoinColumn(name = "purpose_id")
     private Purpose purpose;
 
-    private OS os;
+    private Os os;
     private SpecLevel specLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gpu_id")
     private Gpu gpu;
 
-    public PurposeGpu(Purpose purpose, Gpu gpu, OS os, SpecLevel specLevel) {
+    public PurposeGpu(Purpose purpose, Gpu gpu, Os os, SpecLevel specLevel) {
         this.gpu = gpu;
         this.os = os;
         this.specLevel = specLevel;
@@ -37,7 +37,7 @@ public class PurposeGpu {
             addGpuToPurpose(purpose);
     }
 
-    public PurposeGpu(Purpose purpose, OS os, SpecLevel specLevel) {
+    public PurposeGpu(Purpose purpose, Os os, SpecLevel specLevel) {
         this.os = os;
         this.specLevel = specLevel;
         if (purpose != null)

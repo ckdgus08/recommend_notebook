@@ -45,7 +45,7 @@ public class PurposeServiceTest {
         }
 
         Cpu cpu1 = Cpu.builder()
-                .company(CPUType.INTEL)
+                .company(CpuType.INTEL)
                 .core(4)
                 .max_ghz(4.4f)
                 .model("i5-1145G7")
@@ -53,7 +53,7 @@ public class PurposeServiceTest {
                 .score(10655)
                 .build();
         Cpu cpu2 = Cpu.builder()
-                .company(CPUType.INTEL)
+                .company(CpuType.INTEL)
                 .core(10)
                 .max_ghz(3.7f)
                 .model("i9-10900X")
@@ -61,7 +61,7 @@ public class PurposeServiceTest {
                 .score(22742)
                 .build();
         Cpu cpu3 = Cpu.builder()
-                .company(CPUType.AMD)
+                .company(CpuType.AMD)
                 .core(8)
                 .max_ghz(4.6f)
                 .model("Ryzen 9 5900HS")
@@ -74,14 +74,14 @@ public class PurposeServiceTest {
         em.persist(cpu3);
 
         Gpu gpu1 = Gpu.builder()
-                .company(GPUType.NVIDIA)
+                .company(GpuType.NVIDIA)
                 .display(4)
                 .model("GTX 1050")
                 .score(5258)
                 .vram(4)
                 .build();
         Gpu gpu2 = Gpu.builder()
-                .company(GPUType.AMD)
+                .company(GpuType.AMD)
                 .display(4)
                 .model("Radeon RX 580")
                 .score(8803)
@@ -102,7 +102,7 @@ public class PurposeServiceTest {
         Cpu registered_cpu = purposeService.add_require_cpu(
                 purposeType,
                 cpu,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         //then
@@ -112,7 +112,7 @@ public class PurposeServiceTest {
                 () -> purposeService.add_require_cpu(
                         purposeType,
                         cpu,
-                        OS.window,
+                        Os.window,
                         SpecLevel.최소사양)
         );
     }
@@ -128,13 +128,13 @@ public class PurposeServiceTest {
         Gpu registered_gpu1 = purposeService.add_require_gpu(
                 purposeType,
                 gpu1,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         Gpu registered_gpu2 = purposeService.add_require_gpu(
                 purposeType,
                 gpu2,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         //then
@@ -152,7 +152,7 @@ public class PurposeServiceTest {
                 () -> purposeService.add_require_gpu(
                         purposeType,
                         gpu1,
-                        OS.window,
+                        Os.window,
                         SpecLevel.최소사양)
         );
     }
@@ -167,7 +167,7 @@ public class PurposeServiceTest {
         Integer registered_ram = purposeService.add_require_ram(
                 purposeType,
                 ram,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         //then
@@ -177,7 +177,7 @@ public class PurposeServiceTest {
                 () -> purposeService.add_require_ram(
                         purposeType,
                         ram,
-                        OS.window,
+                        Os.window,
                         SpecLevel.최소사양)
         );
     }
@@ -195,35 +195,35 @@ public class PurposeServiceTest {
         purposeService.add_require_cpu(
                 purposeType[0],
                 cpu1,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
                 purposeType[0],
                 cpu2,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
                 purposeType[1],
                 cpu1,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
                 purposeType[1],
                 cpu3,
-                OS.window,
+                Os.window,
                 SpecLevel.최소사양
         );
 
         //when
-        Map<CPUType, Set<Integer>> map = purposeService.select_cpu_from_purposeType_array(
-                purposeType, OS.window, SpecLevel.최소사양);
+        Map<CpuType, Set<Integer>> map = purposeService.select_cpu_from_purposeType_array(
+                purposeType, Os.window, SpecLevel.최소사양);
 
 
-        assertThat(22742).isEqualTo(map.get(CPUType.INTEL).stream().max(Integer::compare).get());
-        assertThat(23165).isEqualTo(map.get(CPUType.AMD).stream().max(Integer::compare).get());
+        assertThat(22742).isEqualTo(map.get(CpuType.INTEL).stream().max(Integer::compare).get());
+        assertThat(23165).isEqualTo(map.get(CpuType.AMD).stream().max(Integer::compare).get());
 
 
         //then

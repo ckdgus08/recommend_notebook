@@ -1,6 +1,6 @@
 package com.github.ckdgus08.domain;
 
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,9 +21,9 @@ public class PurposeOs {
     @JoinColumn(name = "purpose_id")
     private Purpose purpose;
 
-    private OS os;
+    private Os os;
 
-    public PurposeOs(Purpose purpose, OS os) {
+    public PurposeOs(Purpose purpose, Os os) {
         this.os = os;
         if (purpose != null)
             addOsToPurpose(purpose);

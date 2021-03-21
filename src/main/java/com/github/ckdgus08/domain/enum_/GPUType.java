@@ -1,5 +1,5 @@
 package com.github.ckdgus08.domain.enum_;
 
-public enum GPUType {
+public enum GpuType {
     NVIDIA, INTEL, AMD
 }

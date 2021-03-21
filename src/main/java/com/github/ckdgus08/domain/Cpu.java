@@ -1,6 +1,6 @@
 package com.github.ckdgus08.domain;
 
-import com.github.ckdgus08.domain.enum_.CPUType;
+import com.github.ckdgus08.domain.enum_.CpuType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Cpu extends BaseEntity {
     private Long id;
 
     @Column(length = 5)
-    private CPUType company;
+    private CpuType company;
 
     @Column(length = 25)
     private String code_name;
@@ -40,7 +40,7 @@ public class Cpu extends BaseEntity {
 
     private Integer score;
 
-    public Cpu(CPUType company, String generation, String code_name, String model, Integer core, Integer score) {
+    public Cpu(CpuType company, String generation, String code_name, String model, Integer core, Integer score) {
         this.id = null;
         this.company = company;
         this.generation = generation;
@@ -50,7 +50,7 @@ public class Cpu extends BaseEntity {
         this.score = score;
     }
 
-    public Cpu(CPUType company, Integer core, Float origin_ghz, Integer score) {
+    public Cpu(CpuType company, Integer core, Float origin_ghz, Integer score) {
         this.id = null;
         this.company = company;
         this.core = core;
@@ -58,7 +58,7 @@ public class Cpu extends BaseEntity {
         this.score = score;
     }
 
-    public Cpu(CPUType company) {
+    public Cpu(CpuType company) {
         this.company = company;
     }
 }

@@ -1,6 +1,6 @@
 package com.github.ckdgus08.domain;
 
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.domain.enum_.SpecLevel;
 import lombok.*;
 
@@ -23,7 +23,7 @@ public class PurposeCpu {
     @JoinColumn(name = "purpose_id")
     private Purpose purpose;
 
-    private OS os;
+    private Os os;
 
     private SpecLevel specLevel;
 
@@ -31,7 +31,7 @@ public class PurposeCpu {
     @JoinColumn(name = "cpu_id")
     private Cpu cpu;
 
-    public PurposeCpu(Purpose purpose, Cpu cpu, OS os, SpecLevel specLevel) {
+    public PurposeCpu(Purpose purpose, Cpu cpu, Os os, SpecLevel specLevel) {
         this.cpu = cpu;
         this.os = os;
         this.specLevel = specLevel;
@@ -39,7 +39,7 @@ public class PurposeCpu {
             addCpuToPurpose(purpose);
     }
 
-    public PurposeCpu(Purpose purpose, OS os, SpecLevel specLevel) {
+    public PurposeCpu(Purpose purpose, Os os, SpecLevel specLevel) {
         this.os = os;
         this.specLevel = specLevel;
         if (purpose != null)

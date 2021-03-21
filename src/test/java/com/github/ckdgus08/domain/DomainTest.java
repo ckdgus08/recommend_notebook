@@ -1,7 +1,7 @@
 package com.github.ckdgus08.domain;
 
 import com.github.ckdgus08.domain.enum_.Company;
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.repository.NotebookRepository;
 import com.github.ckdgus08.service.NotebookService;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -35,7 +35,7 @@ public class DomainTest {
                 .model("삼성전자 노트북5 metal NT550XAA-K28T")
                 .company(Company.삼성전자)
                 .inch(15.6f)
-                .os(OS.none)
+                .os(Os.none)
                 .price(816630)
                 .ram(8)
                 .hdd(1024)
@@ -45,7 +45,7 @@ public class DomainTest {
                 .model("LG전자 15G870-PA50K")
                 .company(Company.LG전자)
                 .inch(15.6f)
-                .os(OS.none)
+                .os(Os.none)
                 .price(1291990)
                 .ram(8)
                 .hdd(0)

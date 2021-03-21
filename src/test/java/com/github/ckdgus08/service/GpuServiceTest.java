@@ -1,7 +1,7 @@
 package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Gpu;
-import com.github.ckdgus08.domain.enum_.GPUType;
+import com.github.ckdgus08.domain.enum_.GpuType;
 import com.github.ckdgus08.repository.GpuRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class GpuServiceTest {
     @Autowired
     public EntityManager em;
     @Autowired
-    public GPUService gpuService;
+    public GpuService gpuService;
     @Autowired
     public GpuRepository gpuRepository;
 
@@ -29,7 +29,7 @@ public class GpuServiceTest {
     void GPU_저장() {
         //given
         Gpu gpu = Gpu.builder()
-                .company(GPUType.NVIDIA)
+                .company(GpuType.NVIDIA)
                 .display(4)
                 .model("GTX 1050")
                 .score(5258)
@@ -48,7 +48,7 @@ public class GpuServiceTest {
     void GPU_중복_저장() {
         //given
         Gpu gpu = Gpu.builder()
-                .company(GPUType.NVIDIA)
+                .company(GpuType.NVIDIA)
                 .display(4)
                 .model("GTX 1050")
                 .score(5258)

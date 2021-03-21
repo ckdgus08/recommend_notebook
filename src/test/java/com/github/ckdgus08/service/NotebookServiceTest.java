@@ -2,7 +2,7 @@ package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Notebook;
 import com.github.ckdgus08.domain.enum_.Company;
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.repository.NotebookRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class NotebookServiceTest {
                 .model("삼성전자 노트북5 metal NT550XAA-K28T")
                 .company(Company.삼성전자)
                 .inch(15.6f)
-                .os(OS.none)
+                .os(Os.none)
                 .price(816630)
                 .ram(8)
                 .hdd(1024)
@@ -56,7 +56,7 @@ public class NotebookServiceTest {
                 .model("삼성전자 노트북5 metal NT550XAA-K28T")
                 .company(Company.삼성전자)
                 .inch(15.6f)
-                .os(OS.none)
+                .os(Os.none)
                 .price(816630)
                 .ram(8)
                 .hdd(1024)

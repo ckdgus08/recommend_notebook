@@ -1,6 +1,6 @@
 package com.github.ckdgus08.domain;
 
-import com.github.ckdgus08.domain.enum_.GPUType;
+import com.github.ckdgus08.domain.enum_.GpuType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,7 +29,7 @@ public class Gpu extends BaseEntity {
     private Integer display;
 
     @Column(length = 10)
-    private GPUType company;
+    private GpuType company;
 
     public Gpu(String model) {
         this.model = model;
@@ -40,7 +40,7 @@ public class Gpu extends BaseEntity {
         this.vram = vram;
     }
 
-    public Gpu(GPUType company, Integer vram, Integer score) {
+    public Gpu(GpuType company, Integer vram, Integer score) {
         this.company = company;
         this.vram = vram;
         this.score = score;

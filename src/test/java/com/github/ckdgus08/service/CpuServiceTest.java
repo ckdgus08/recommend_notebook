@@ -1,7 +1,7 @@
 package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Cpu;
-import com.github.ckdgus08.domain.enum_.CPUType;
+import com.github.ckdgus08.domain.enum_.CpuType;
 import com.github.ckdgus08.repository.CpuRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CpuServiceTest {
     @Autowired
     public EntityManager em;
     @Autowired
-    public CPUService cpuService;
+    public CpuService cpuService;
     @Autowired
     public CpuRepository cpuRepository;
 
@@ -29,7 +29,7 @@ public class CpuServiceTest {
     void 씨피유_저장() {
         //given
         Cpu cpu = Cpu.builder()
-                .company(CPUType.INTEL)
+                .company(CpuType.INTEL)
                 .core(4)
                 .max_ghz(4.4f)
                 .model("i5-1145G7")
@@ -49,7 +49,7 @@ public class CpuServiceTest {
     void 씨피유_중복_저장() {
         //given
         Cpu cpu = Cpu.builder()
-                .company(CPUType.INTEL)
+                .company(CpuType.INTEL)
                 .core(4)
                 .max_ghz(4.4f)
                 .model("i5-1145G7")

@@ -1,7 +1,7 @@
 package com.github.ckdgus08.domain;
 
 import com.github.ckdgus08.domain.enum_.Company;
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,7 +31,7 @@ public class Notebook extends BaseEntity {
     @OneToMany(mappedBy = "notebook")
     private final List<NotebookPurpose> notebookPurposes = new ArrayList<>();
 
-    private OS os;
+    private Os os;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cpu_id")
@@ -52,7 +52,7 @@ public class Notebook extends BaseEntity {
         this.company = company;
     }
 
-    public Notebook(Company company, String model, Float inch, Float weight, Integer ram, Integer ssd, Integer hdd, Integer price, OS os, Cpu cpu, Gpu gpu) {
+    public Notebook(Company company, String model, Float inch, Float weight, Integer ram, Integer ssd, Integer hdd, Integer price, Os os, Cpu cpu, Gpu gpu) {
         this.id = null;
         this.company = company;
         this.model = model;
@@ -67,7 +67,7 @@ public class Notebook extends BaseEntity {
         this.gpu = gpu;
     }
 
-    public Notebook update(Company company, String model, Float inch, Float weight, Integer ram, Integer ssd, Integer hdd, Integer price, OS os, Cpu cpu, Gpu gpu) {
+    public Notebook update(Company company, String model, Float inch, Float weight, Integer ram, Integer ssd, Integer hdd, Integer price, Os os, Cpu cpu, Gpu gpu) {
         if (inch != null)
             this.inch = inch;
         if (weight != null)

@@ -1,6 +1,6 @@
 package com.github.ckdgus08.domain;
 
-import com.github.ckdgus08.domain.enum_.OS;
+import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.domain.enum_.SpecLevel;
 import lombok.*;
 
@@ -22,12 +22,12 @@ public class PurposeRam {
     @JoinColumn(name = "purpose_id")
     private Purpose purpose;
 
-    private OS os;
+    private Os os;
     private SpecLevel specLevel;
 
     private Integer ram;
 
-    public PurposeRam(Purpose purpose, Integer ram, OS os, SpecLevel specLevel) {
+    public PurposeRam(Purpose purpose, Integer ram, Os os, SpecLevel specLevel) {
         this.ram = ram;
         this.os = os;
         this.specLevel = specLevel;
