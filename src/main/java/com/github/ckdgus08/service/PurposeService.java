@@ -110,4 +110,16 @@ public class PurposeService {
                 ));
     }
 
+    public Integer select_ram_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+
+        return purposes.stream()
+                .flatMap(p -> p.getPurposeRams().stream())
+                .filter(c -> c.getOs() == os)
+                .filter(c -> c.getSpecLevel() == specLevel)
+                .map(PurposeRam::getRam)
+                .max(Integer::compare).get();
+    }
+
+
 }
