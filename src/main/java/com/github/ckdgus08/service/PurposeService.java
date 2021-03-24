@@ -1,10 +1,7 @@
 package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.*;
-import com.github.ckdgus08.domain.enum_.CpuType;
-import com.github.ckdgus08.domain.enum_.Os;
-import com.github.ckdgus08.domain.enum_.PurposeType;
-import com.github.ckdgus08.domain.enum_.SpecLevel;
+import com.github.ckdgus08.domain.enum_.*;
 import com.github.ckdgus08.repository.PurposeCpuRepository;
 import com.github.ckdgus08.repository.PurposeGpuRepository;
 import com.github.ckdgus08.repository.PurposeRamRepository;
@@ -97,6 +94,20 @@ public class PurposeService {
                 ));
 
         // TODO: 2021/03/22 Map<CpuType, Set<Integer>> -> Map<CpuType, Integer> 로 한번에 처리하는 방법 생각
+    }
+
+    public Map<GpuType, Set<Integer>> select_gpu_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+
+        return purposes.stream()
+                .flatMap(p -> p.getPurposeGpus().stream())
+                .filter(c -> c.getOs() == os)
+                .filter(c -> c.getSpecLevel() == specLevel)
+                .collect(Collectors.groupingBy(
+                        c -> c.getGpu().getCompany(),
+                        HashMap::new,
+                        Collectors.mapping(c -> c.getGpu().getScore(), Collectors.toSet())
+                ));
     }
 
 }
