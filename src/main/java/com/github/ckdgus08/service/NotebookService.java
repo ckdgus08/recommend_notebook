@@ -1,10 +1,13 @@
 package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Notebook;
+import com.github.ckdgus08.dto.ScoreCondition;
 import com.github.ckdgus08.repository.NotebookPurposeRepository;
 import com.github.ckdgus08.repository.NotebookRepository;
 import com.github.ckdgus08.repository.PurposeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,4 +36,7 @@ public class NotebookService {
     }
 
 
+    public Page<Notebook> findByScoreCondition(ScoreCondition scoreCondition, Pageable pageable) {
+        return notebookRepository.findByScoreCondition(scoreCondition, pageable);
+    }
 }
