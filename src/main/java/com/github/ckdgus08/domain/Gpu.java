@@ -28,7 +28,7 @@ public class Gpu extends BaseEntity {
 
     private Integer display;
 
-    @Column(length = 10)
+    @Enumerated(EnumType.STRING)
     private GpuType company;
 
     public Gpu(String model) {

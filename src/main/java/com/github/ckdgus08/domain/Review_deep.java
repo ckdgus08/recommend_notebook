@@ -18,6 +18,7 @@ public class Review_deep extends BaseEntity {
     @Column(name = "review_deep_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private ReviewType reviewType;
 
     @Column(length = 1024)

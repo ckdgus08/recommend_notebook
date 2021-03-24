@@ -19,7 +19,7 @@ public class Cpu extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private CpuType company;
 
     @Column(length = 25)

@@ -29,6 +29,7 @@ public class Purpose extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PurposeType purposeType;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @JsonIgnore

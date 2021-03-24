@@ -23,8 +23,10 @@ public class PurposeCpu {
     @JoinColumn(name = "purpose_id")
     private Purpose purpose;
 
+    @Enumerated(EnumType.STRING)
     private Os os;
 
+    @Enumerated(EnumType.STRING)
     private SpecLevel specLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)

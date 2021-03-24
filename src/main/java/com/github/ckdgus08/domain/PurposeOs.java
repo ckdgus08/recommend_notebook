@@ -21,6 +21,7 @@ public class PurposeOs {
     @JoinColumn(name = "purpose_id")
     private Purpose purpose;
 
+    @Enumerated(EnumType.STRING)
     private Os os;
 
     public PurposeOs(Purpose purpose, Os os) {
