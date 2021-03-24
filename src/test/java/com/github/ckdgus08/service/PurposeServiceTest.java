@@ -231,11 +231,31 @@ public class PurposeServiceTest {
 
     @Test
     void 여러프로그램_최적GPU_선택() {
-        //given
+        PurposeType[] purposeType = Arrays.array(PurposeType._테스트, PurposeType._2D캐드);
+
+        Gpu gpu1 = gpuRepository.findByModelAndVram("GTX 1050", 4).get(0);
+        Gpu gpu2 = gpuRepository.findByModelAndVram("Radeon RX 580", 8).get(0);
 
         //when
+        purposeService.add_require_gpu(
+                purposeType[0],
+                gpu1,
+                Os.window,
+                SpecLevel.최소사양
+        );
+        purposeService.add_require_gpu(
+                purposeType[1],
+                gpu2,
+                Os.window,
+                SpecLevel.최소사양
+        );
 
-        //then
+        //when
+        Map<GpuType, Set<Integer>> map = purposeService.select_gpu_from_purposeType_array(
+                purposeType, Os.window, SpecLevel.최소사양);
+
+        assertThat(5258).isEqualTo(map.get(GpuType.NVIDIA).stream().max(Integer::compare).get());
+        assertThat(8803).isEqualTo(map.get(GpuType.AMD).stream().max(Integer::compare).get());
     }
 
 
