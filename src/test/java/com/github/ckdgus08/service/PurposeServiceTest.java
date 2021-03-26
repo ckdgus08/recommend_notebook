@@ -4,6 +4,7 @@ import com.github.ckdgus08.domain.Cpu;
 import com.github.ckdgus08.domain.Gpu;
 import com.github.ckdgus08.domain.Purpose;
 import com.github.ckdgus08.domain.enum_.*;
+import com.github.ckdgus08.dto.ScoreCondition;
 import com.github.ckdgus08.repository.CpuRepository;
 import com.github.ckdgus08.repository.GpuRepository;
 import com.github.ckdgus08.repository.PurposeRepository;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.Map;
-import java.util.Set;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
@@ -218,9 +219,8 @@ public class PurposeServiceTest {
         );
 
         //when
-        Map<CpuType, Set<Integer>> map = purposeService.select_cpu_from_purposeType_array(
+        Map<CpuType, Optional<Integer>> map = purposeService.select_cpu_from_purposeType_array(
                 purposeType, Os.window, SpecLevel.최소사양);
-
 
         assertThat(22742).isEqualTo(map.get(CpuType.INTEL).stream().max(Integer::compare).get());
         assertThat(23165).isEqualTo(map.get(CpuType.AMD).stream().max(Integer::compare).get());
@@ -251,11 +251,11 @@ public class PurposeServiceTest {
         );
 
         //when
-        Map<GpuType, Set<Integer>> map = purposeService.select_gpu_from_purposeType_array(
+        Map<GpuType, Optional<Integer>> map = purposeService.select_gpu_from_purposeType_array(
                 purposeType, Os.window, SpecLevel.최소사양);
 
-        assertThat(5258).isEqualTo(map.get(GpuType.NVIDIA).stream().max(Integer::compare).get());
-        assertThat(8803).isEqualTo(map.get(GpuType.AMD).stream().max(Integer::compare).get());
+        assertThat(5258).isEqualTo(map.get(GpuType.NVIDIA).get());
+        assertThat(8803).isEqualTo(map.get(GpuType.AMD).get());
     }
 
     @Test
@@ -325,20 +325,15 @@ public class PurposeServiceTest {
         );
 
         //when
-        Map<CpuType, Set<Integer>> cpu_map = purposeService.select_cpu_from_purposeType_array(
-                purposeType, Os.window, SpecLevel.최소사양);
 
-        Map<GpuType, Set<Integer>> gpu_map = purposeService.select_gpu_from_purposeType_array(
-                purposeType, Os.window, SpecLevel.최소사양);
+        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_array(purposeType, Os.window, SpecLevel.최소사양);
 
-        Integer max_ram = purposeService.select_ram_from_purposeType_array(
-                purposeType, Os.window, SpecLevel.최소사양);
 
-        assertThat(22742).isEqualTo(cpu_map.get(CpuType.INTEL).stream().max(Integer::compare).get());
-        assertThat(23165).isEqualTo(cpu_map.get(CpuType.AMD).stream().max(Integer::compare).get());
-        assertThat(5258).isEqualTo(gpu_map.get(GpuType.NVIDIA).stream().max(Integer::compare).get());
-        assertThat(8803).isEqualTo(gpu_map.get(GpuType.AMD).stream().max(Integer::compare).get());
-        assertThat(ram2).isEqualTo(max_ram);
+        assertThat(22742).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.INTEL).get());
+        assertThat(23165).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.AMD).get());
+        assertThat(5258).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get());
+        assertThat(8803).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.AMD).get());
+        assertThat(ram2).isEqualTo(scoreCondition.getRam());
     }
 
     @Test
