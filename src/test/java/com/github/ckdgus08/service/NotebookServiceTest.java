@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
@@ -171,9 +172,9 @@ public class NotebookServiceTest {
     void 사양별_노트북목록_검색() {
         //given
 
-        Map<CpuType, Integer> cpu_map = new HashMap<>();
-        cpu_map.put(CpuType.INTEL, 22742);
-        cpu_map.put(CpuType.AMD, 10000);
+        Map<CpuType, Optional<Integer>> cpu_map = new HashMap<>();
+        cpu_map.put(CpuType.INTEL, Optional.of(22742));
+        cpu_map.put(CpuType.AMD, Optional.of(10000));
 
         ScoreCondition scoreCondition = new ScoreCondition();
         scoreCondition.setCpuCondition(cpu_map);

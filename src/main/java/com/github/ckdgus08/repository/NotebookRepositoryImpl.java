@@ -48,11 +48,11 @@ public class NotebookRepositoryImpl implements NotebookRepositoryCustom {
 
         if (condition.getCpuCondition().containsKey(CpuType.INTEL)) {
             intel_builder.and(notebook.cpu.company.eq(CpuType.INTEL))
-                    .and(notebook.cpu.score.goe(condition.getCpuCondition().get(CpuType.INTEL)));
+                    .and(notebook.cpu.score.goe(condition.getCpuCondition().get(CpuType.INTEL).get()));
         }
         if (condition.getCpuCondition().containsKey(CpuType.AMD)) {
             amd_builder.and(notebook.cpu.company.eq(CpuType.AMD))
-                    .and(notebook.cpu.score.goe(condition.getCpuCondition().get(CpuType.AMD)));
+                    .and(notebook.cpu.score.goe(condition.getCpuCondition().get(CpuType.AMD).get()));
         }
 
         return (intel_builder.or(amd_builder));
@@ -65,11 +65,11 @@ public class NotebookRepositoryImpl implements NotebookRepositoryCustom {
 
         if (condition.getCpuCondition().containsKey(GpuType.NVIDIA)) {
             nvidia_builder.and(notebook.gpu.company.eq(GpuType.NVIDIA))
-                    .and(notebook.gpu.score.goe(condition.getCpuCondition().get(GpuType.NVIDIA)));
+                    .and(notebook.gpu.score.goe(condition.getCpuCondition().get(GpuType.NVIDIA).get()));
         }
         if (condition.getCpuCondition().containsKey(GpuType.AMD)) {
             amd_builder.and(notebook.gpu.company.eq(GpuType.AMD))
-                    .and(notebook.gpu.score.goe(condition.getCpuCondition().get(GpuType.AMD)));
+                    .and(notebook.gpu.score.goe(condition.getCpuCondition().get(GpuType.AMD).get()));
         }
 
         return (nvidia_builder.or(amd_builder));

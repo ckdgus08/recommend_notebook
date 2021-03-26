@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -13,8 +14,8 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScoreCondition {
-    Map<CpuType, Integer> cpuCondition = new HashMap<>();
-    Map<GpuType, Integer> gpuCondition = new HashMap<>();
+    Map<CpuType, Optional<Integer>> cpuCondition = new HashMap<>();
+    Map<GpuType, Optional<Integer>> gpuCondition = new HashMap<>();
     Integer ram;
 
 }
