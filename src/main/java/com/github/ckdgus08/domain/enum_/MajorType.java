@@ -1,38 +1,244 @@
 package com.github.ckdgus08.domain.enum_;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum MajorType {
-    국어국문학과,한문학과,노어노문학과,독어독문학과,불어불문학과,서어서문학과,언어학과,영어영문학과,일어일문학과,중어중문학과,문예창작학과,기타어문학과
-    ,철학과,종교학과,사학과,고고학과,미술사학과,문화인류학과,문화재보존학과,한국학과
-    ,법학과
-    ,기독교학과,신학과,선교학과,불교학과,기타종교학과
-    ,심리학과,사회학과,정치외교학과,북한학과,행정학과,경찰행정학과,아동가족학과,여성학과,지리학과,지적학과,도시학과,국제학부,문헌정보학과,문화콘텐츠학과,커뮤니케이션학과,비서학과
-    ,군사학과,부사관과
-    ,경영학과,경제학과,무역학과,소비자학과,회계학과,세무학과,부동산학과,금융보험학과,경영정보학과,관광학과,물류유통학과,광고홍보학과
-    ,수학과,통계학과,생명과학과,화학과,물리학과,천문학과,해양학과,지질학과,대기과학과
-    ,농생물학과,농업경제학과,식물자원학과,산림과학과,동물자원학과,특수동물학과,애완동물과,수산학과,수산생명의학과
-    ,의류의상학과,식품영양학과,조리과학과,주거환경학과
-    ,수의학과,의학과,치의학과,한의학과
-    ,약학과,한약학과
-    ,간호학과
-    ,재활학과,언어치료학과,작업치료학과,물리치료학과,안경광학과,방사선학과,응급구조학과,임상병리학과,치위생학과,치기공학과,의료정보학과,보건행정학과,건강관리학과
-    ,전기전자공학과,제어공학과,의공학과,광공학과,국방기술학과
-    ,컴퓨터공학과,정보보안학과,인공지능학과,소프트웨어학과,멀티미디어학과,글로벌IT학과
-    ,화학공학과,재료공학과,고분자공학과,섬유공학과,생명공학과,식품공학과,나노공학과,에너지공학과
-    ,기계공학과,자동차공학과,조선해양공학과,항공우주공학과,기전공학과,철도공학과,금형설계공학과,특수장비과
-    ,건축학과,건축공학과,토목공학과,교통공학과,농공학과,조경학과,환경공학과,안전공학과
-    ,철도운전관제과,항해학과,기관학과,항공운항과,산업공학과,소방학과,원자력공학과,출판인쇄과
-    ,교육학과,교육공학과,유아교육과,특수교육과
-    ,초등교육과
-    ,국어교육과,영어교육과,불어교육과,독어교육과,일어교육과,중국어교육과,한문교육과,문헌정보교육과
-    ,지리교육과,역사교육과,일반사회교육과,윤리교육과
-    ,과학교육과,수학교육과,환경교육과
-    ,음악교육과,미술교육과,체육교육과,종교교육과
-    ,기술교육과,가정교육과,농업교육과,수해양산업교육과,상업정보교육과,컴퓨터교육과
-    ,서양화과,동양화과,산업디자인학과,시각디자인학과,종교미술학과,보석감정과
-    ,귀금속공예과,도자공예과,조소과,섬유과,목형과,판화과
-    ,작곡과,성악과,기악과,국악과,실용음악과,음악학과,교회음악과,음향과
-    ,무용학과,체육학과,스포츠의학과,경호학과
-    ,연극학과,영상영화학과,공연제작과,모델과
-    ,사진학과,게임학과,만화애니메이션학과,미용학과
-    ,자유전공학부,기타;
+    국어국문학과(Arrays.asList()),
+    한문학과(Arrays.asList()),
+    노어노문학과(Arrays.asList()),
+    독어독문학과(Arrays.asList()),
+    불어불문학과(Arrays.asList()),
+    서어서문학과(Arrays.asList()),
+    언어학과(Arrays.asList()),
+    영어영문학과(Arrays.asList()),
+    일어일문학과(Arrays.asList()),
+    중어중문학과(Arrays.asList()),
+    문예창작학과(Arrays.asList()),
+    기타어문학과(Arrays.asList()),
+    철학과(Arrays.asList()),
+    종교학과(Arrays.asList()),
+    사학과(Arrays.asList()),
+    고고학과(Arrays.asList()),
+    미술사학과(Arrays.asList()),
+    문화인류학과(Arrays.asList()),
+    문화재보존학과(Arrays.asList()),
+    한국학과(Arrays.asList()),
+    법학과(Arrays.asList()),
+    기독교학과(Arrays.asList()),
+    신학과(Arrays.asList()),
+    선교학과(Arrays.asList()),
+    불교학과(Arrays.asList()),
+    기타종교학과(Arrays.asList()),
+    심리학과(Arrays.asList(PurposeType._SPSS, PurposeType._R프로그래밍, PurposeType._AMOS)),
+    사회학과(Arrays.asList()),
+    정치외교학과(Arrays.asList()),
+    북한학과(Arrays.asList()),
+    행정학과(Arrays.asList(PurposeType._SPSS)),
+    경찰행정학과(Arrays.asList()),
+    아동가족학과(Arrays.asList()),
+    여성학과(Arrays.asList()),
+    지리학과(Arrays.asList()),
+    지적학과(Arrays.asList()),
+    도시학과(Arrays.asList()),
+    국제학부(Arrays.asList()),
+    문헌정보학과(Arrays.asList()),
+    커뮤니케이션학과(Arrays.asList()),
+    비서학과(Arrays.asList()),
+    군사학과(Arrays.asList()),
+    부사관과(Arrays.asList()),
+    경영학과(Arrays.asList(PurposeType._SPSS, PurposeType._파이참, PurposeType._R프로그래밍)),
+    경제학과(Arrays.asList()),
+    무역학과(Arrays.asList()),
+    소비자학과(Arrays.asList()),
+    회계학과(Arrays.asList(PurposeType._ERP, PurposeType._R프로그래밍)),
+    세무학과(Arrays.asList()),
+    부동산학과(Arrays.asList(PurposeType._R프로그래밍, PurposeType._SPSS)),
+    금융보험학과(Arrays.asList()),
+    경영정보학과(Arrays.asList(PurposeType._이클립스, PurposeType._비주얼스튜디오, PurposeType._SPSS)),
+    관광학과(Arrays.asList()),
+    물류유통학과(Arrays.asList(PurposeType._SPSS)),
+    수학과(Arrays.asList()),
+    통계학과(Arrays.asList()),
+    생명과학과(Arrays.asList()),
+    화학과(Arrays.asList()),
+    물리학과(Arrays.asList(PurposeType._GMT)),
+    천문학과(Arrays.asList()),
+    해양학과(Arrays.asList()),
+    지질학과(Arrays.asList()),
+    대기과학과(Arrays.asList()),
+    농생물학과(Arrays.asList()),
+    농업경제학과(Arrays.asList()),
+    식물자원학과(Arrays.asList()),
+    산림과학과(Arrays.asList()),
+    동물자원학과(Arrays.asList()),
+    특수동물학과(Arrays.asList()),
+    애완동물과(Arrays.asList()),
+    수산학과(Arrays.asList()),
+    수산생명의학과(Arrays.asList()),
+    의류의상학과(Arrays.asList()),
+    식품영양학과(Arrays.asList()),
+    조리과학과(Arrays.asList()),
+    주거환경학과(Arrays.asList()),
+    수의학과(Arrays.asList()),
+    의학과(Arrays.asList()),
+    치의학과(Arrays.asList()),
+    한의학과(Arrays.asList()),
+    약학과(Arrays.asList()),
+    한약학과(Arrays.asList()),
+    간호학과(Arrays.asList(PurposeType._SPSS)),
+    재활학과(Arrays.asList()),
+    언어치료학과(Arrays.asList()),
+    작업치료학과(Arrays.asList()),
+    물리치료학과(Arrays.asList()),
+    안경광학과(Arrays.asList()),
+    방사선학과(Arrays.asList()),
+    응급구조학과(Arrays.asList()),
+    임상병리학과(Arrays.asList()),
+    치위생학과(Arrays.asList()),
+    치기공학과(Arrays.asList()),
+    의료정보학과(Arrays.asList()),
+    보건행정학과(Arrays.asList()),
+    건강관리학과(Arrays.asList()),
+    전기전자공학과(Arrays.asList(PurposeType._orCad, PurposeType._매트랩, PurposeType._쥬피터, PurposeType._verliog
+            , PurposeType._피스파이스, PurposeType._비주얼스튜디오, PurposeType._Octave)),
+    제어공학과(Arrays.asList()),
+    의공학과(Arrays.asList(PurposeType._솔리드웍스, PurposeType._랩뷰, PurposeType._PLC)),
+    광공학과(Arrays.asList()),
+    국방기술학과(Arrays.asList()),
+    컴퓨터공학과(Arrays.asList(PurposeType._인텔리제이, PurposeType._비주얼스튜디오, PurposeType._안드로이드스튜디오
+            , PurposeType._이클립스)),
+    정보보안학과(Arrays.asList()),
+    인공지능학과(Arrays.asList(PurposeType._비주얼스튜디오)),
+    소프트웨어학과(Arrays.asList(PurposeType._인텔리제이, PurposeType._비주얼스튜디오, PurposeType._안드로이드스튜디오
+            , PurposeType._이클립스)),
+    글로벌IT학과(Arrays.asList(PurposeType._비주얼스튜디오)),
+    화학공학과(Arrays.asList(PurposeType._매트랩)),
+    재료공학과(Arrays.asList()),
+    고분자공학과(Arrays.asList()),
+    섬유공학과(Arrays.asList()),
+    생명공학과(Arrays.asList()),
+    식품공학과(Arrays.asList()),
+    나노공학과(Arrays.asList()),
+    에너지공학과(Arrays.asList()),
+    기계공학과(Arrays.asList(PurposeType._솔리드웍스, PurposeType._매트랩, PurposeType._크레오, PurposeType._ansys, PurposeType._RecurDyn,
+            PurposeType._UG_NX, PurposeType._orCad, PurposeType._카티아, PurposeType._Abaqus, PurposeType._인벤터)),
+
+    건축학과(Arrays.asList(PurposeType._오토캐드, PurposeType._라이노, PurposeType._스케치업, PurposeType._브이레이
+            , PurposeType._루미온)),
+    건축공학과(Arrays.asList(PurposeType._오토캐드, PurposeType._라이노, PurposeType._스케치업, PurposeType._브이레이
+            , PurposeType._루미온)),
+
+    자동차공학과(Arrays.asList()),
+    조선해양공학과(Arrays.asList()),
+    항공우주공학과(Arrays.asList()),
+    기전공학과(Arrays.asList()),
+    철도공학과(Arrays.asList()),
+    금형설계공학과(Arrays.asList()),
+    특수장비과(Arrays.asList()),
+
+    토목공학과(Arrays.asList()),
+    교통공학과(Arrays.asList(PurposeType._BimRoad)),
+    농공학과(Arrays.asList()),
+    조경학과(Arrays.asList(PurposeType._포토샵, PurposeType._오토캐드, PurposeType._스케치업, PurposeType._루미온)),
+    환경공학과(Arrays.asList()),
+    안전공학과(Arrays.asList()),
+    철도운전관제과(Arrays.asList()),
+    항해학과(Arrays.asList()),
+    기관학과(Arrays.asList()),
+    항공운항과(Arrays.asList()),
+    산업공학과(Arrays.asList(PurposeType._SPSS, PurposeType._R프로그래밍, PurposeType._비주얼스튜디오)),
+    소방학과(Arrays.asList()),
+    원자력공학과(Arrays.asList()),
+    출판인쇄과(Arrays.asList()),
+
+    교육학과(Arrays.asList()),
+    교육공학과(Arrays.asList()),
+    유아교육과(Arrays.asList()),
+    특수교육과(Arrays.asList()),
+    초등교육과(Arrays.asList()),
+    국어교육과(Arrays.asList()),
+    영어교육과(Arrays.asList()),
+    불어교육과(Arrays.asList()),
+    독어교육과(Arrays.asList()),
+    일어교육과(Arrays.asList()),
+    중국어교육과(Arrays.asList()),
+    한문교육과(Arrays.asList()),
+    문헌정보교육과(Arrays.asList()),
+    지리교육과(Arrays.asList()),
+    역사교육과(Arrays.asList()),
+    일반사회교육과(Arrays.asList()),
+    윤리교육과(Arrays.asList()),
+    과학교육과(Arrays.asList()),
+    수학교육과(Arrays.asList()),
+    환경교육과(Arrays.asList()),
+    음악교육과(Arrays.asList()),
+    미술교육과(Arrays.asList()),
+    체육교육과(Arrays.asList()),
+    종교교육과(Arrays.asList()),
+    기술교육과(Arrays.asList()),
+    가정교육과(Arrays.asList()),
+    농업교육과(Arrays.asList()),
+    수해양산업교육과(Arrays.asList()),
+    상업정보교육과(Arrays.asList()),
+    컴퓨터교육과(Arrays.asList()),
+
+    보석감정과(Arrays.asList()),
+
+    도자공예과(Arrays.asList()),
+    조소과(Arrays.asList()),
+    섬유과(Arrays.asList()),
+    목형과(Arrays.asList()),
+    판화과(Arrays.asList()),
+    작곡과(Arrays.asList(PurposeType._로직프로, PurposeType._Finale, PurposeType._큐베이스, PurposeType._FL스튜디오,
+            PurposeType._가상악기, PurposeType._에이블톤, PurposeType._MIDI)),
+    성악과(Arrays.asList()),
+    기악과(Arrays.asList()),
+    국악과(Arrays.asList()),
+    실용음악과(Arrays.asList()),
+    음악학과(Arrays.asList()),
+    교회음악과(Arrays.asList()),
+    음향과(Arrays.asList()),
+    무용학과(Arrays.asList()),
+    체육학과(Arrays.asList()),
+    스포츠의학과(Arrays.asList()),
+    경호학과(Arrays.asList()),
+    연극학과(Arrays.asList()),
+
+    산업디자인학과(Arrays.asList(PurposeType._라이노, PurposeType._퓨전360, PurposeType._키샷, PurposeType._일러스트레이터
+    )),
+    시각디자인학과(Arrays.asList(PurposeType._포토샵, PurposeType._일러스트레이터, PurposeType._디멘션, PurposeType._인디자인
+            , PurposeType._XD, PurposeType._피그마, PurposeType._시네마4D)),
+    미술학과(Arrays.asList(PurposeType._포토샵, PurposeType._일러스트레이터)),
+
+    귀금속공예과(Arrays.asList(PurposeType._2D캐드, PurposeType._일러스트레이터,
+            PurposeType._라이노, PurposeType._지브러시, PurposeType._키샷)),
+
+    멀티미디어학과(Arrays.asList(PurposeType._프리미어프로, PurposeType._3dsMax, PurposeType._일러스트레이터, PurposeType._애프터이펙트
+            , PurposeType._포토샵)),
+
+    문화콘텐츠학과(Arrays.asList(PurposeType._프리미어프로, PurposeType._포토샵, PurposeType._애프터이펙트
+            , PurposeType._일러스트레이터, PurposeType._마야, PurposeType._머드박스)),
+
+    영상영화학과(Arrays.asList(PurposeType._프리미어프로, PurposeType._포토샵, PurposeType._애프터이펙트
+            , PurposeType._일러스트레이터)),
+
+    광고홍보학과(Arrays.asList(PurposeType._프리미어프로, PurposeType._포토샵, PurposeType._일러스트레이터, PurposeType._애프터이펙트)),
+    만화애니메이션학과(Arrays.asList(PurposeType._프리미어프로, PurposeType._마야, PurposeType._3dsMax, PurposeType._블렌더)),
+
+
+    공연제작과(Arrays.asList()),
+    모델과(Arrays.asList()),
+    사진학과(Arrays.asList()),
+    게임학과(Arrays.asList()),
+    미용학과(Arrays.asList()),
+    자유전공학부(Arrays.asList()),
+    기타(Arrays.asList());
+
+
+    private final List<PurposeType> purposeTypes;
+
+    MajorType(List<PurposeType> purposeTypes) {
+        this.purposeTypes = purposeTypes;
+    }
 }
