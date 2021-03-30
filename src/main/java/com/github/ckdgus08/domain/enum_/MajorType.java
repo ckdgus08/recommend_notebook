@@ -241,4 +241,9 @@ public enum MajorType {
     MajorType(List<PurposeType> purposeTypes) {
         this.purposeTypes = purposeTypes;
     }
+
+    public List<PurposeType> getPurposeTypes() {
+        return purposeTypes;
+    }
+
 }

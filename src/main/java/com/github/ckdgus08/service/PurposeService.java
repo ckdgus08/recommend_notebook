@@ -151,5 +151,10 @@ public class PurposeService {
                 .max(Integer::compare).get();
     }
 
+    public List<PurposeType> select_purposes_from_major(MajorType majorType) {
+
+        return majorType.getPurposeTypes();
+    }
+
 
 }
