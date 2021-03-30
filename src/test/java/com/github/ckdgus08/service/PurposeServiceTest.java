@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -334,6 +335,18 @@ public class PurposeServiceTest {
         assertThat(5258).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get());
         assertThat(8803).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.AMD).get());
         assertThat(ram2).isEqualTo(scoreCondition.getRam());
+    }
+
+    @Test
+    void 전공에_따른_프로그램_검색() {
+        //given
+        MajorType majorType = MajorType.컴퓨터공학과;
+
+        //when
+        List<PurposeType> purposes = purposeService.select_purposes_from_major(majorType);
+
+        //then
+        assertThat(purposes.size()).isEqualTo(4);
     }
 
     @Test

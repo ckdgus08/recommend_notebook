@@ -62,13 +62,5 @@ public class GpuServiceTest {
         );
     }
 
-    @Test
-    void GPU_최적사양_선택() {
-        //given
-
-        //when
-
-        //then
-    }
 
 }
