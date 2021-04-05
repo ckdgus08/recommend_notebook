@@ -350,15 +350,6 @@ public class PurposeServiceTest {
     }
 
     @Test
-    void 프로그램사양_선택안할시_전공에따라_기본등록() {
-        //given
-
-        //when
-
-        //then
-    }
-
-    @Test
     void 사용못하는_운영체제_검사() {
         //given
 

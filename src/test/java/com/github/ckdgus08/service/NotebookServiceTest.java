@@ -8,6 +8,7 @@ import com.github.ckdgus08.domain.enum_.CpuType;
 import com.github.ckdgus08.domain.enum_.GpuType;
 import com.github.ckdgus08.domain.enum_.Os;
 import com.github.ckdgus08.dto.ScoreCondition;
+import com.github.ckdgus08.dto.SearchCondition;
 import com.github.ckdgus08.repository.NotebookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
@@ -94,7 +93,7 @@ public class NotebookServiceTest {
                 .company(Company.삼성전자)
                 .inch(15.6f)
                 .os(Os.none)
-                .price(816630)
+                .price(999999)
                 .ram(8)
                 .hdd(1024)
                 .ssd(0)
@@ -109,7 +108,7 @@ public class NotebookServiceTest {
                 .company(Company.삼성전자)
                 .inch(15.6f)
                 .os(Os.none)
-                .price(816630)
+                .price(888888)
                 .ram(8)
                 .hdd(1024)
                 .ssd(0)
@@ -180,25 +179,42 @@ public class NotebookServiceTest {
         scoreCondition.setCpuCondition(cpu_map);
         Pageable pageable = PageRequest.of(0, 50);
 
-        Page<Notebook> result = notebookService.findByScoreCondition(scoreCondition, pageable);
-
-        assertThat(result.getContent().get(0).getModel()).isEqualTo("삼성전자 노트북5 metal NT550XAA-K28T");
-        assertThat(result.getContent().get(1).getModel()).isEqualTo("삼성전자 노트북5 metal");
-
-
         //when
+        Page<Notebook> result = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, null);
 
         //then
+        assertThat(result.getContent().get(0).getModel()).isEqualTo("삼성전자 노트북5 metal NT550XAA-K28T");
+        assertThat(result.getContent().get(1).getModel()).isEqualTo("삼성전자 노트북5 metal");
     }
 
 
     @Test
     void 검색정렬순서() {
         //given
+        SearchCondition searchCondition = SearchCondition.builder()
+                .search_order(Map.of(0, "가격"))
+                .build();
+
+        Map<CpuType, Optional<Integer>> cpu_map = new HashMap<>();
+        cpu_map.put(CpuType.INTEL, Optional.of(22742));
+        cpu_map.put(CpuType.AMD, Optional.of(10000));
+
+        ScoreCondition scoreCondition = new ScoreCondition();
+        scoreCondition.setCpuCondition(cpu_map);
+        Pageable pageable = PageRequest.of(0, 50);
 
         //when
-
+        Page<Notebook> result1 = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, null);
+        Page<Notebook> result2 = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, searchCondition);
         //then
+
+        List<Notebook> result1_sorted = result1.stream()
+                .sorted(Comparator.comparingInt(Notebook::getPrice))
+                .collect(Collectors.toList());
+
+        System.out.println("result1_sorted = " + result1_sorted);
+
+        assertThat(result2.getContent().get(0)).isEqualTo(result1_sorted.get(0));
     }
 
     @Test
