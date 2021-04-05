@@ -233,7 +233,7 @@ public enum MajorType {
     게임학과(Arrays.asList()),
     미용학과(Arrays.asList()),
     자유전공학부(Arrays.asList()),
-    기타(Arrays.asList());
+    기타(Arrays.asList(PurposeType._테스트));
 
 
     private final List<PurposeType> purposeTypes;
