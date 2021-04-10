@@ -25,7 +25,6 @@ public class Purpose extends BaseEntity {
     @Column(name = "puporse_id")
     private Long id;
 
-    @Column(length = 20)
     @Enumerated(EnumType.STRING)
     private PurposeType purposeType;
 
