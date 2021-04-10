@@ -126,7 +126,7 @@ public class NotebookServiceTest {
     void 노트북_저장() {
         //given
         Notebook notebook2 = Notebook.builder()
-                .model("테스트테스트")
+                .model("삼성전자 노트북5 metal 테스트-01")
                 .company(Company.삼성전자)
                 .inch(15.6f)
                 .os(Os.none)
@@ -138,7 +138,7 @@ public class NotebookServiceTest {
                 .build();
         //when
         Long saved_id = notebookService.save(notebook2);
-        List<Notebook> result = notebookRepository.findByModel("테스트테스트");
+        List<Notebook> result = notebookRepository.findByModel("삼성전자 노트북5 metal 테스트-01");
 
         //then
         assertThat(result.size()).isEqualTo(1);
@@ -149,7 +149,7 @@ public class NotebookServiceTest {
     void 노트북_중복_저장() {
         //given
         Notebook notebook1 = Notebook.builder()
-                .model("삼성전자 노트북5 metal NT550XAA-K28T")
+                .model("삼성전자 노트북5 metal 테스트-01")
                 .company(Company.삼성전자)
                 .inch(15.6f)
                 .os(Os.none)
@@ -173,7 +173,7 @@ public class NotebookServiceTest {
 
         Map<CpuType, Optional<Integer>> cpu_map = new HashMap<>();
         cpu_map.put(CpuType.INTEL, Optional.of(22742));
-        cpu_map.put(CpuType.AMD, Optional.of(10000));
+        cpu_map.put(CpuType.AMD, Optional.of(20000));
 
         ScoreCondition scoreCondition = new ScoreCondition();
         scoreCondition.setCpuCondition(cpu_map);
@@ -182,9 +182,9 @@ public class NotebookServiceTest {
         //when
         Page<Notebook> result = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, null);
 
+        System.out.println("result = " + result.getContent());
         //then
-        assertThat(result.getContent().get(0).getModel()).isEqualTo("삼성전자 노트북5 metal NT550XAA-K28T");
-        assertThat(result.getContent().get(1).getModel()).isEqualTo("삼성전자 노트북5 metal");
+        assertThat(result.getContent().size()).isEqualTo(3);
     }
 
 

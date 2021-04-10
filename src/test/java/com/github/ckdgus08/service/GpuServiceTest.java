@@ -31,13 +31,13 @@ public class GpuServiceTest {
         Gpu gpu = Gpu.builder()
                 .company(GpuType.NVIDIA)
                 .display(4)
-                .model("GTX 1050")
+                .model("GTX 테스트-01")
                 .score(5258)
                 .vram(4)
                 .build();
         //when
         Long saved_id = gpuService.save(gpu);
-        List<Gpu> result = gpuRepository.findByModelAndVram("GTX 1050", 4);
+        List<Gpu> result = gpuRepository.findByModelAndVram("GTX 테스트-01", 4);
 
         //then
         assertThat(result.size()).isEqualTo(1);
@@ -50,7 +50,7 @@ public class GpuServiceTest {
         Gpu gpu = Gpu.builder()
                 .company(GpuType.NVIDIA)
                 .display(4)
-                .model("GTX 1050")
+                .model("GTX 테스트-01")
                 .score(5258)
                 .vram(4)
                 .build();

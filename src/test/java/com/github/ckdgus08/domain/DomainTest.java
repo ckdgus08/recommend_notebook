@@ -6,6 +6,7 @@ import com.github.ckdgus08.repository.NotebookRepository;
 import com.github.ckdgus08.service.NotebookService;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +52,14 @@ public class DomainTest {
                 .hdd(0)
                 .ssd(256)
                 .weight(2.5f);
+    }
 
+    @Test
+    void test() {
+        //given
+        //when
+
+        //then
     }
 
 

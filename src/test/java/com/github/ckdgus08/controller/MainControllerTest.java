@@ -11,7 +11,7 @@ public class MainControllerTest {
     @Autowired
     public EntityManager em;
     @Autowired
-    public MainController notebookService;
+    public MainController mainController;
 
 //    @Test
 //    @DisplayName("전공은 필수적으로 선택되어야 한다.")
@@ -20,12 +20,11 @@ public class MainControllerTest {
 //        SearchCondition searchCondition = SearchCondition.builder()
 //                .major(null)
 //                .build();
-//
 //        //when
 //
 //        //then
 //        assertThatIllegalArgumentException().isThrownBy(
-//                () -> notebookService.search_notebook(searchCondition)
+//                () -> mainController.search_notebook(searchCondition)
 //        );
 //    }
 //
@@ -51,9 +50,9 @@ public class MainControllerTest {
 //        String success_major2 = "abcde";
 //        String fail_major1 = "_기계";
 //        //when
-//        boolean success_result1 = notebookService.validate_major(true_major1);
-//        boolean success_result2 = notebookService.validate_major(true_major2);
-//        boolean fail_result1 = notebookService.validate_major(false_major1);
+//        boolean success_result1 = mainController.validate_major(true_major1);
+//        boolean success_result2 = mainController.validate_major(true_major2);
+//        boolean fail_result1 = mainController.validate_major(false_major1);
 //        //then
 //        assertThat(success_result1).isEqualTo(true);
 //        assertThat(success_result2).isEqualTo(true);

@@ -2,7 +2,6 @@ package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Cpu;
 import com.github.ckdgus08.domain.Gpu;
-import com.github.ckdgus08.domain.Purpose;
 import com.github.ckdgus08.domain.enum_.*;
 import com.github.ckdgus08.dto.ScoreCondition;
 import com.github.ckdgus08.repository.CpuRepository;
@@ -40,12 +39,6 @@ public class PurposeServiceTest {
 
     @BeforeEach
     void 프로그램_저장() {
-        PurposeType[] purposeTypes = PurposeType.values();
-
-        for (PurposeType purposeType : purposeTypes) {
-            purposeRepository.save(new Purpose(purposeType));
-        }
-
         Cpu cpu1 = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(4)
