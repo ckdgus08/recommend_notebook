@@ -13,6 +13,7 @@ import java.util.Optional;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(of = {"cpuCondition", "gpuCondition", "ram"})
 public class ScoreCondition {
     Map<CpuType, Optional<Integer>> cpuCondition = new HashMap<>();
     Map<GpuType, Optional<Integer>> gpuCondition = new HashMap<>();

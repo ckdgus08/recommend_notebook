@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@ToString(of = {"purposeType", "status"})
+@ToString(of = {"purposeType", "status", "purposeCpus", "purposeGpus"})
 public class Purpose extends BaseEntity {
     //  윈도우 맥
     //  최소사양 권장사양
