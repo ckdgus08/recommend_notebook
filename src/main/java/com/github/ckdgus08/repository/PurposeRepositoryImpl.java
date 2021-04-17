@@ -21,16 +21,16 @@ public class PurposeRepositoryImpl implements PurposeRepositoryCustom {
     }
 
     @Override
-    public List<Purpose> findByPurposeTypeArray(PurposeType[] purposeTypeArray) {
-        if (purposeTypeArray.length == 0) return EMPTY_LIST;
+    public List<Purpose> findByPurposeTypeList(List<PurposeType> purposeTypeList) {
+        if (purposeTypeList.size() == 0) return EMPTY_LIST;
         return queryFactory
                 .selectFrom(purpose)
                 .where(
-                        purposeArrayEqual(purposeTypeArray)
+                        purposeListEqual(purposeTypeList)
                 ).fetch();
     }
 
-    private Predicate purposeArrayEqual(PurposeType[] purposeCond) {
+    private Predicate purposeListEqual(List<PurposeType> purposeCond) {
         BooleanBuilder result = new BooleanBuilder();
         for (PurposeType s : purposeCond) {
             result.or(purpose.purposeType.eq(s));

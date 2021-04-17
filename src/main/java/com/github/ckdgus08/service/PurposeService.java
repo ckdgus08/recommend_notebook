@@ -83,8 +83,8 @@ public class PurposeService {
         throw new IllegalStateException("이미 등록된 RAM입니다.");
     }
 
-    public Map<CpuType, Optional<Integer>> select_cpu_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
-        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+    public Map<CpuType, Optional<Integer>> select_cpu_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return purposes.stream()
                 .flatMap(p -> p.getPurposeCpus().stream())
@@ -94,9 +94,9 @@ public class PurposeService {
                 ));
     }
 
-    public ScoreCondition select_ScoreCondition_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
+    public ScoreCondition select_ScoreCondition_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
 
-        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return ScoreCondition.builder()
                 .cpuCondition(
@@ -104,6 +104,7 @@ public class PurposeService {
                                 .flatMap(p -> p.getPurposeCpus().stream())
                                 .filter(c -> c.getOs() == os)
                                 .filter(c -> c.getSpecLevel() == specLevel)
+                                .filter(c -> c.getCpu() != null)
                                 .collect(Collectors.groupingBy(
                                         c -> c.getCpu().getCompany(),
                                         Collectors.mapping(c -> c.getCpu().getScore(), Collectors.maxBy(Integer::compare))
@@ -113,6 +114,7 @@ public class PurposeService {
                                 .flatMap(p -> p.getPurposeGpus().stream())
                                 .filter(c -> c.getOs() == os)
                                 .filter(c -> c.getSpecLevel() == specLevel)
+                                .filter(c -> c.getGpu() != null)
                                 .collect(Collectors.groupingBy(
                                         c -> c.getGpu().getCompany(),
                                         Collectors.mapping(c -> c.getGpu().getScore(), Collectors.maxBy(Integer::compare))
@@ -122,13 +124,14 @@ public class PurposeService {
                                 .flatMap(p -> p.getPurposeRams().stream())
                                 .filter(c -> c.getOs() == os)
                                 .filter(c -> c.getSpecLevel() == specLevel)
+                                .filter(c -> c.getRam() != null)
                                 .map(PurposeRam::getRam)
                                 .max(Integer::compare).get()
                 ).build();
     }
 
-    public Map<GpuType, Optional<Integer>> select_gpu_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
-        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+    public Map<GpuType, Optional<Integer>> select_gpu_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return purposes.stream()
                 .flatMap(p -> p.getPurposeGpus().stream())
@@ -140,8 +143,8 @@ public class PurposeService {
                 ));
     }
 
-    public Integer select_ram_from_purposeType_array(PurposeType[] purposeTypes, Os os, SpecLevel specLevel) {
-        List<Purpose> purposes = purposeRepository.findByPurposeTypeArray(purposeTypes);
+    public Integer select_ram_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+        List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return purposes.stream()
                 .flatMap(p -> p.getPurposeRams().stream())

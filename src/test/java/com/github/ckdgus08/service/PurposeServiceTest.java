@@ -2,19 +2,24 @@ package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Cpu;
 import com.github.ckdgus08.domain.Gpu;
+import com.github.ckdgus08.domain.Notebook;
 import com.github.ckdgus08.domain.enum_.*;
 import com.github.ckdgus08.dto.ScoreCondition;
 import com.github.ckdgus08.repository.CpuRepository;
 import com.github.ckdgus08.repository.GpuRepository;
 import com.github.ckdgus08.repository.PurposeRepository;
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,6 +41,8 @@ public class PurposeServiceTest {
     public CpuRepository cpuRepository;
     @Autowired
     public GpuRepository gpuRepository;
+    @Autowired
+    public NotebookService notebookService;
 
     @BeforeEach
     void 프로그램_저장() {
@@ -180,7 +187,9 @@ public class PurposeServiceTest {
     @Test
     void 여러프로그램_최적CPU_선택() {
         //given
-        PurposeType[] purposeType = Arrays.array(PurposeType._테스트, PurposeType._2D캐드);
+        List<PurposeType> purposeType = new ArrayList<>();
+        purposeType.add(PurposeType._테스트);
+        purposeType.add(PurposeType._2D캐드);
 
         Cpu cpu1 = cpuRepository.findByModel("i5-1145G7").get(0);
         Cpu cpu2 = cpuRepository.findByModel("i9-10900X").get(0);
@@ -188,32 +197,32 @@ public class PurposeServiceTest {
 
         //when
         purposeService.add_require_cpu(
-                purposeType[0],
+                purposeType.get(0),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[0],
+                purposeType.get(0),
                 cpu2,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[1],
+                purposeType.get(1),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[1],
+                purposeType.get(1),
                 cpu3,
                 Os.window,
                 SpecLevel.최소사양
         );
 
         //when
-        Map<CpuType, Optional<Integer>> map = purposeService.select_cpu_from_purposeType_array(
+        Map<CpuType, Optional<Integer>> map = purposeService.select_cpu_from_purposeType_list(
                 purposeType, Os.window, SpecLevel.최소사양);
 
         assertThat(22742).isEqualTo(map.get(CpuType.INTEL).stream().max(Integer::compare).get());
@@ -225,27 +234,29 @@ public class PurposeServiceTest {
 
     @Test
     void 여러프로그램_최적GPU_선택() {
-        PurposeType[] purposeType = Arrays.array(PurposeType._테스트, PurposeType._2D캐드);
+        List<PurposeType> purposeType = new ArrayList<>();
+        purposeType.add(PurposeType._테스트);
+        purposeType.add(PurposeType._2D캐드);
 
         Gpu gpu1 = gpuRepository.findByModelAndVram("GTX 1050", 4).get(0);
         Gpu gpu2 = gpuRepository.findByModelAndVram("Radeon RX 580", 8).get(0);
 
         //when
         purposeService.add_require_gpu(
-                purposeType[0],
+                purposeType.get(0),
                 gpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_gpu(
-                purposeType[1],
+                purposeType.get(1),
                 gpu2,
                 Os.window,
                 SpecLevel.최소사양
         );
 
         //when
-        Map<GpuType, Optional<Integer>> map = purposeService.select_gpu_from_purposeType_array(
+        Map<GpuType, Optional<Integer>> map = purposeService.select_gpu_from_purposeType_list(
                 purposeType, Os.window, SpecLevel.최소사양);
 
         assertThat(5258).isEqualTo(map.get(GpuType.NVIDIA).get());
@@ -257,7 +268,9 @@ public class PurposeServiceTest {
 
         // TODO: 2021/03/25 함수 하나로 합치기
 
-        PurposeType[] purposeType = Arrays.array(PurposeType._테스트, PurposeType._2D캐드);
+        List<PurposeType> purposeType = new ArrayList<>();
+        purposeType.add(PurposeType._테스트);
+        purposeType.add(PurposeType._2D캐드);
 
         Cpu cpu1 = cpuRepository.findByModel("i5-1145G7").get(0);
         Cpu cpu2 = cpuRepository.findByModel("i9-10900X").get(0);
@@ -269,50 +282,50 @@ public class PurposeServiceTest {
 
         //when
         purposeService.add_require_ram(
-                purposeType[0],
+                purposeType.get(0),
                 ram1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_ram(
-                purposeType[1],
+                purposeType.get(1),
                 ram2,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[0],
+                purposeType.get(0),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[0],
+                purposeType.get(0),
                 cpu2,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[1],
+                purposeType.get(1),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_cpu(
-                purposeType[1],
+                purposeType.get(1),
                 cpu3,
                 Os.window,
                 SpecLevel.최소사양
         );
 
         purposeService.add_require_gpu(
-                purposeType[0],
+                purposeType.get(0),
                 gpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
         purposeService.add_require_gpu(
-                purposeType[1],
+                purposeType.get(1),
                 gpu2,
                 Os.window,
                 SpecLevel.최소사양
@@ -320,7 +333,7 @@ public class PurposeServiceTest {
 
         //when
 
-        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_array(purposeType, Os.window, SpecLevel.최소사양);
+        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_list(purposeType, Os.window, SpecLevel.최소사양);
 
 
         assertThat(22742).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.INTEL).get());
@@ -340,6 +353,24 @@ public class PurposeServiceTest {
 
         //then
         assertThat(purposes.size()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("전공을 선택하면 추천 노트북이 적절하게 선택된다")
+    void select_major_get_notebook() {
+        //given
+        MajorType majorType = MajorType.테스트;
+        //when
+        List<PurposeType> purposeTypes = purposeService.select_purposes_from_major(majorType);
+
+        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_list(purposeTypes, Os.window, SpecLevel.최소사양);
+
+        Pageable pageable = PageRequest.of(0, 10);
+
+        Page<Notebook> result = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, null);
+
+        assertThat(result.getTotalElements()).isEqualTo(32L);
+        //then
     }
 
     @Test

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface PurposeRepositoryCustom {
 
-    List<Purpose> findByPurposeTypeArray(PurposeType[] purposeTypes);
+    List<Purpose> findByPurposeTypeList(List<PurposeType> purposeTypes);
 
 }
