@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html layout:decorate="~{layout/default}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<th:block layout:fragment="title">
+    <title> 노트북 </title>
+</th:block>
+
+
+<th:block layout:fragment="custom">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-slider.css}">
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/slider11.0.2-min.js}"></script>
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="slide">
+        <div class="slide__sub-block">
+            <img class="sub-block_logo">
+            <div class="sub-block_title" data-slide-index="1"> 선택지 제목</div>
+            <div class="sub-block_title hidden" data-slide-index="2"> 선택지 제목</div>
+            <div class="sub-block_content hidden" data-slide-index="2">
+                <div class="sub-block__move_button">
+                    <button class="move_button__type maj" style="background-color: #369bde;">전공</button>
+                    <button class="move_button__type all">일반</button>
+                    <button class="move_button__type gam">게임</button>
+                    <button class="move_button__type vid">영상편집</button>
+                    <button class="move_button__type pro">고사양</button>
+                </div>
+            </div>
+            <div class="sub-block_content hidden" data-slide-index="3">
+                <div class="sub-block__move_button">
+                    <button class="move_button__type maj" style="background-color: #369bde;">무게</button>
+                    <button class="move_button__type all">가격</button>
+                    <button class="move_button__type gam">화면크기</button>
+                    <button class="move_button__type vid"></button>
+                    <button class="move_button__type pro"></button>
+                </div>
+            </div>
+
+            <div class="sub-block_content hidden" data-slide-index="4">
+                <div class="sub-block__move_button">
+                    <button class="move_button__type maj" style="background-color: #369bde;">색상</button>
+                    <button class="move_button__type all">밝기</button>
+                    <button class="move_button__type gam"></button>
+                    <button class="move_button__type vid"></button>
+                    <button class="move_button__type pro"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide__main-block">
+            <div class="main-block__progress progress">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success"
+                     role="progressbar"
+                     style="width: 25%;"></div>
+            </div>
+
+            <div class="main-block__title" data-slide-index="1"> 전공을 선택하세요!</div>
+            <div class="main-block__radio-group" data-slide-index="1">
+                <div class="radio_group__radio">
+                    <input id="major_1" name="major" type="radio" value="인문사회계열">
+                    <label class="radio__label" for="major_1">인문사회계열</label>
+                    <input id="major_2" name="major" type="radio" value="자연과학계열">
+                    <label class="radio__label" for="major_2">자연과학계열</label>
+                    <input id="major_3" name="major" type="radio" value="공학기술계열">
+                    <label class="radio__label" for="major_3">공학기술계열</label>
+                    <input id="major_4" name="major" type="radio" value="영상예술계열">
+                    <label class="radio__label" for="major_4">영상예술계열</label>
+                    <input id="major_5" name="major" type="radio" value="컴퓨터계열">
+                    <label class="radio__label" for="major_5">컴퓨터계열</label>
+                </div>
+            </div>
+
+            <div class="main-block__title hidden" data-slide-index="2"> 사용할 프로그램을 선택하세요!</div>
+            <div class="main-block__check-group hidden" data-slide-index="2">
+                <div class="check_group__check maj">
+
+                </div>
+                <div class="check_group__check all hidden">
+
+                </div>
+                <div class="check_group__check gam hidden">
+
+                </div>
+                <div class="check_group__check vid hidden">
+
+                </div>
+                <div class="check_group__check pro hidden">
+
+                </div>
+            </div>
+
+            <div class="main-block__title hidden" data-slide-index="3"> 무게를 선택하세요!</div>
+            <div class="main-block__slider-group hidden" data-slide-index="3">
+                <b class="weightTag">0.8kg</b>
+                <input class="span2" data-slider-max="4" data-slider-min="0.8" data-slider-step="0.1"
+                       data-slider-value="[0.8,4.0]" id="weight_"
+                       name="weight"
+                       type="text" value=""/>
+                <b class="weightTag">4kg</b>
+            </div>
+
+            <div class="main-block__title hidden" data-slide-index="4"> 화면크기를 선택하세요!</div>
+            <div class="main-block__slider-group hidden" data-slide-index="4">
+                <b class="inchTag">12인치대</b>
+                <input class="span2" data-slider-max="17" data-slider-min="12" data-slider-step="1"
+                       data-slider-value="[12,17]" id="inch_"
+                       name="inch"
+                       type="text" value=""/>
+                <b class="inchTag">17인치대</b>
+            </div>
+
+            <div class="main-block__title hidden" data-slide-index="5"> 가격을 선택하세요.</div>
+            <div class="main-block__slider-group hidden" data-slide-index="5">
+                <b class="priceTag">300,000원</b>
+                <input class="span2" data-slider-max="10000000" data-slider-min="300000" data-slider-step="100000"
+                       data-slider-value="[300000,10000000]" id="price_"
+                       name="price"
+                       type="text" value=""/>
+                <b class="priceTag">10,000,000원</b>
+            </div>
+
+            <div class="main-block__title hidden" data-slide-index="6">확정하시겠습니까?</div>
+            <div class="main-block__radio-group hidden" data-slide-index="6">
+                <form action="/search" method="get" style="text-align: center; margin-top: 30px;">
+                    <input id="major" name="_major" type="hidden" value="">
+                    <input id="purpose" name="_purpose" type="hidden" value="">
+                    <input id="weight" name="_weight" type="hidden" value="">
+                    <input id="inch" name="_inch" type="hidden" value="">
+                    <input id="price" name="_price" type="hidden" value="">
+                    <input id="submit" type="submit" value="노트북 추천받기">
+                </form>
+
+            </div>
+
+            <div class="main-block__move_button">
+                <button class="move_button__left hide">이전</button>
+                <button class="move_button__right">다음</button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+</th:block>
+
+</html>
+

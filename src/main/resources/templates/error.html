@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html layout:decorate="~{layout/default}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<th:block layout:fragment="title">
+    <title> 노트북 </title>
+</th:block>
+
+
+<th:block layout:fragment="custom">
+    <!--    <link rel="stylesheet" th:href="@{/css/comment.css}">-->
+    <!--    <script th:src="@{/js/newComment.js}"></script>-->
+</th:block>
+
+
+<th:block layout:fragment="content">
+
+    <div>조건에 해당하는 모델을 찾지 못했습니다.</div>
+    <a href="/">
+        <button>조건 다시 정하기</button>
+    </a>
+
+</th:block>
+
+</html>
+
