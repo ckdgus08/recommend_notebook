@@ -24,6 +24,6 @@ public class GpuService {
 
     public void validateDuplicate(Gpu gpu) {
         List<Gpu> result = gpuRepository.findByModelAndVram(gpu.getModel(), gpu.getVram());
-        if (result.size() != 0) throw new IllegalStateException("이미 등록된 모델입니다.");
+        if (!result.isEmpty()) throw new IllegalStateException("이미 등록된 모델입니다.");
     }
 }

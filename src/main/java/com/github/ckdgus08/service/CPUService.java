@@ -24,6 +24,6 @@ public class CpuService {
 
     public void validateDuplicate(Cpu cpu) {
         List<Cpu> result = cpuRepository.findByModel(cpu.getModel());
-        if (result.size() != 0) throw new IllegalStateException("이미 등록된 모델입니다.");
+        if (!result.isEmpty()) throw new IllegalStateException("이미 등록된 모델입니다.");
     }
 }
