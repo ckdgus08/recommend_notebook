@@ -22,7 +22,7 @@ public class PurposeRepositoryImpl implements PurposeRepositoryCustom {
 
     @Override
     public List<Purpose> findByPurposeTypeList(List<PurposeType> purposeTypeList) {
-        if (purposeTypeList.size() == 0) return EMPTY_LIST;
+        if (purposeTypeList.isEmpty()) return EMPTY_LIST;
         return queryFactory
                 .selectFrom(purpose)
                 .where(

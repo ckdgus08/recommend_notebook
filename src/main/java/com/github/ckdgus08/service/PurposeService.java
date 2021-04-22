@@ -37,7 +37,7 @@ public class PurposeService {
                 .filter(registered_cpu -> registered_cpu.getCpu().getScore().equals(cpu.getScore()))
                 .collect(Collectors.toList());
 
-        if (cpu_list.size() == 0) {
+        if (cpu_list.isEmpty()) {
             PurposeCpu purposeCpu = new PurposeCpu(purpose.get(), cpu, os, specLevel);
             purposeCpuRepository.save(purposeCpu);
             return cpu;
@@ -56,7 +56,7 @@ public class PurposeService {
                 .filter(registered_gpu -> registered_gpu.getGpu().getScore().equals(gpu.getScore()))
                 .collect(Collectors.toList());
 
-        if (gpu_list.size() == 0) {
+        if (gpu_list.isEmpty()) {
             PurposeGpu purposeGpu = new PurposeGpu(purpose.get(), gpu, os, specLevel);
             purposeGpuRepository.save(purposeGpu);
             return gpu;
@@ -75,7 +75,7 @@ public class PurposeService {
                 .filter(registered_gpu -> registered_gpu.getRam().equals(ram))
                 .collect(Collectors.toList());
 
-        if (gpu_list.size() == 0) {
+        if (gpu_list.isEmpty()) {
             PurposeRam purposeRam = new PurposeRam(purpose.get(), ram, os, specLevel);
             purposeRamRepository.save(purposeRam);
             return ram;
