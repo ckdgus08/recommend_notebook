@@ -17,100 +17,46 @@
 
 <th:block layout:fragment="content">
 
-    <div th:text="${all.getSize()}"></div>
-    <div>추천 요구사양</div>
-    <table class="table table-striped article-list bbs">
-        <tr class="category">
-            <td style="text-decoration: none; text-align: center;">cpu</td>
-            <td style="text-decoration: none; text-align: center;">gpu</td>
-            <td style="text-decoration: none; text-align: center;">ram</td>
-        </tr>
-        <tr>
-            <td style="text-decoration: none; text-align: center;" th:text="${cpu_intel_require}"></td>
-            <td style="text-decoration: none; text-align: center;" th:text="${gpu_nvidia_require}"></td>
-            <td rowspan="2" style="text-decoration: none; text-align: center;" th:text="${ram}"></td>
-        </tr>
-        <tr>
-            <td style="text-decoration: none; text-align: center;" th:text="${cpu_amd_require}"></td>
-            <td style="text-decoration: none; text-align: center;" th:text="${gpu_amd_require}"></td>
-        </tr>
-    </table>
+    <div class="slide">
+        <div class="slide__sub-block">
+            <img class="sub-block_logo">
+            <div class="sub-block_title" data-slide-index="1"> 선택지 제목</div>
+            <div class="sub-block_content" data-slide-index="1">
+                <div class="sub-block__move_button">
+                    <button class="move_button__type maj" th:text="${cpu_intel_require}"></button>
+                    <button class="move_button__type all" th:text="${gpu_nvidia_require}"></button>
+                    <button class="move_button__type gam" th:text="${cpu_amd_require}"></button>
+                    <button class="move_button__type vid" th:text="${gpu_amd_require}"></button>
+                    <button class="move_button__type pro" th:text="${ram}"></button>
+                </div>
+            </div>
+        </div>
 
+        <div class="slide__main-block">
+            <div class="main-block__title" data-slide-index="1"> 전공을 선택하세요!</div>
+            <div class="main-block__radio-group" data-slide-index="1">
+                <div class="radio_group__radio">
+                    <div class="radio__label" th:text="${notebook1.getCompany()}">인문사회계열</div>
+                    <div class="radio__label" th:text="${notebook1.getModel()}">자연과학계열</div>
+                    <div class="radio__label" th:text="${notebook1.getCpu().getScore()}">공학기술계열</div>
+                    <div class="radio__label" th:text="${notebook1.getGpu().getScore()}"> 영상예술계열</div>
+                    <div class="radio__label" th:text="${notebook1.getPrice()}">컴퓨터계열</div>
+                </div>
+            </div>
+        </div>
 
-    <div class="row">
-        <table class="table table-striped article-list bbs" id="article-list">
-            <thead>
-            <tr class="category">
-                <th style="text-decoration: none; text-align: center;">비교</th>
-                <th style="text-decoration: none; text-align: center;">모델1</th>
-                <th style="text-decoration: none; text-align: center;">모델2</th>
-            </tr>
-            </thead>
-            <tr>
-                <td>회사</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getCompany()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getCompany()}"></td>
-            </tr>
-            <tr>
-                <td>모델명</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getModel()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getModel()}"></td>
-            </tr>
-
-            <tr>
-                <td>CPU</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getCpu()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getCpu()}"></td>
-            </tr>
-
-            <tr>
-                <td>GPU</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getGpu()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getGpu()}"></td>
-            </tr>
-
-            <tr>
-                <td>가격</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getPrice()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getPrice()}"></td>
-            </tr>
-            <tr>
-                <td>무게</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getWeight()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getWeight()}"></td>
-            </tr>
-            <tr>
-                <td>램</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getRam()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getRam()}"></td>
-            </tr>
-            <tr>
-                <td>ssd</td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook1.getSsd()}"></td>
-                <td style="text-decoration: none; text-align: center;"
-                    th:text="${notebook2.getSsd()}"></td>
-            </tr>
-
-
-            <ul class="article-list__pagination article-list__pagination--inactive" id="article-list-pagination">
-
-            </ul>
-        </table>
+        <div class="slide__main-block">
+            <div class="main-block__title" data-slide-index="1"> 전공을 선택하세요!</div>
+            <div class="main-block__radio-group" data-slide-index="1">
+                <div class="radio_group__radio">
+                    <div class="radio__label" th:text="${notebook2.getCompany()}">인문사회계열</div>
+                    <div class="radio__label" th:text="${notebook2.getModel()}">자연과학계열</div>
+                    <div class="radio__label" th:text="${notebook2.getCpu().getScore()}">공학기술계열</div>
+                    <div class="radio__label" th:text="${notebook2.getGpu().getScore()}"> 영상예술계열</div>
+                    <div class="radio__label" th:text="${notebook2.getPrice()}">컴퓨터계열</div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

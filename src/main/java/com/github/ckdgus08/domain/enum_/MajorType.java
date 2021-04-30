@@ -234,7 +234,7 @@ public enum MajorType {
     미용학과(Arrays.asList()),
     자유전공학부(Arrays.asList()),
     기타(Arrays.asList(PurposeType._테스트)),
-    테스트(Arrays.asList(PurposeType.values()));
+    테스트(Arrays.asList(PurposeType._테스트));
 
 
     private final List<PurposeType> purposeTypes;
