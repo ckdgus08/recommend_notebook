@@ -76,8 +76,8 @@ public class SearchController {
             model.addAttribute("gpu_amd_require", gpu_amd_require);
         }
 
-        model.addAttribute("notebook1", notebook.getContent().get(0));
-        model.addAttribute("notebook2", notebook.getContent().get(1));
+        model.addAttribute("notebook", notebook.getContent());
+        model.addAttribute("purpose", purpose);
         model.addAttribute("all", notebook);
         model.addAttribute("ram", scoreCondition.getRam());
         return "search";

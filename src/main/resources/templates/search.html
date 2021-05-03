@@ -20,9 +20,10 @@
     <div class="slide">
         <div class="slide__sub-block">
             <img class="sub-block_logo">
-            <div class="sub-block_title" data-slide-index="1"> 선택지 제목</div>
+            <div class="sub-block_title" data-slide-index="1" th:text="${'추천 사양 총 ' + notebook.size() + '개'}"></div>
             <div class="sub-block_content" data-slide-index="1">
                 <div class="sub-block__move_button">
+                    <button class="move_button__type purpose" th:text="${purpose}"></button>
                     <button class="move_button__type maj" th:text="${cpu_intel_require}"></button>
                     <button class="move_button__type all" th:text="${gpu_nvidia_require}"></button>
                     <button class="move_button__type gam" th:text="${cpu_amd_require}"></button>
@@ -32,31 +33,26 @@
             </div>
         </div>
 
-        <div class="slide__main-block">
-            <div class="main-block__title" data-slide-index="1"> 전공을 선택하세요!</div>
-            <div class="main-block__radio-group" data-slide-index="1">
+        <div class="slide__main-block hidden" th:data-slide-index="${notebooksStat.index}"
+             th:each="notebooks : ${notebook }">
+            <div class="main-block__title" th:text="${'추천노트북'+notebooksStat.index}"></div>
+            <div class="main-block__radio-group">
                 <div class="radio_group__radio">
-                    <div class="radio__label" th:text="${notebook1.getCompany()}">인문사회계열</div>
-                    <div class="radio__label" th:text="${notebook1.getModel()}">자연과학계열</div>
-                    <div class="radio__label" th:text="${notebook1.getCpu().getScore()}">공학기술계열</div>
-                    <div class="radio__label" th:text="${notebook1.getGpu().getScore()}"> 영상예술계열</div>
-                    <div class="radio__label" th:text="${notebook1.getPrice()}">컴퓨터계열</div>
+                    <div class="radio__label" th:text="${notebooks.getCompany()}"></div>
+                    <div class="radio__label" th:text="${notebooks.getModel()}"></div>
+                    <div class="radio__label"
+                         th:text="${notebooks.getCpu().getModel() + ' ' + notebooks.getCpu().getScore()}"></div>
+                    <div class="radio__label"
+                         th:text="${notebooks.getGpu().getModel() + ' ' + notebooks.getGpu().getScore()}"></div>
+                    <div class="radio__label" th:text="${notebooks.getPrice()}"></div>
+                    <button class="move_button__type choose" th:data-slide-index="${notebooksStat.index}">선택하기</button>
                 </div>
             </div>
         </div>
 
-        <div class="slide__main-block">
-            <div class="main-block__title" data-slide-index="1"> 전공을 선택하세요!</div>
-            <div class="main-block__radio-group" data-slide-index="1">
-                <div class="radio_group__radio">
-                    <div class="radio__label" th:text="${notebook2.getCompany()}">인문사회계열</div>
-                    <div class="radio__label" th:text="${notebook2.getModel()}">자연과학계열</div>
-                    <div class="radio__label" th:text="${notebook2.getCpu().getScore()}">공학기술계열</div>
-                    <div class="radio__label" th:text="${notebook2.getGpu().getScore()}"> 영상예술계열</div>
-                    <div class="radio__label" th:text="${notebook2.getPrice()}">컴퓨터계열</div>
-                </div>
-            </div>
-        </div>
+        <div class="hidden" id="main_progress">2</div>
+
+
     </div>
 
 
