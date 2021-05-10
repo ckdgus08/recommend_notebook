@@ -19,7 +19,7 @@ public class Notebook extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "notebook_id")
+    @Column(name = "notebookId")
     private Long id;
     @Column(length = 50)
     private String model;
@@ -34,10 +34,10 @@ public class Notebook extends BaseEntity {
     private Os os;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cpu_id")
+    @JoinColumn(name = "cpuId")
     private Cpu cpu;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "gpu_id")
+    @JoinColumn(name = "gpuId")
     private Gpu gpu;
 
     private Integer ram;

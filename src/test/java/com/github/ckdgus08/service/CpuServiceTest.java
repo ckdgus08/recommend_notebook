@@ -31,18 +31,18 @@ public class CpuServiceTest {
         Cpu cpu = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(4)
-                .max_ghz(4.4f)
+                .maxGhz(4.4f)
                 .model("i5-test-01")
                 .thread(8)
                 .score(10655)
                 .build();
         //when
-        Long saved_id = cpuService.save(cpu);
+        Long savedId = cpuService.save(cpu);
         List<Cpu> result = cpuRepository.findByModel("i5-test-01");
 
         //then
         assertThat(result.size()).isEqualTo(1);
-        assertThat(saved_id).isEqualTo(result.get(0).getId());
+        assertThat(savedId).isEqualTo(result.get(0).getId());
     }
 
     @Test
@@ -51,13 +51,13 @@ public class CpuServiceTest {
         Cpu cpu = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(4)
-                .max_ghz(4.4f)
+                .maxGhz(4.4f)
                 .model("i5-test-01")
                 .thread(8)
                 .score(10655)
                 .build();
         //when
-        Long saved_id1 = cpuService.save(cpu);
+        Long savedId1 = cpuService.save(cpu);
 
         assertThatIllegalStateException().isThrownBy(
                 () -> cpuService.save(cpu)

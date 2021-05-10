@@ -30,7 +30,7 @@ public class DomainTest {
 
 
     @BeforeEach
-    void query_inject() {
+    void queryInject() {
 
         Notebook.builder()
                 .model("삼성전자 노트북5 metal NT550XAA-K28T")

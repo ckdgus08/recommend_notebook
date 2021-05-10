@@ -18,7 +18,7 @@ public class PurposeOs {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "purpose_id")
+    @JoinColumn(name = "purposeId")
     private Purpose purpose;
 
     @Enumerated(EnumType.STRING)

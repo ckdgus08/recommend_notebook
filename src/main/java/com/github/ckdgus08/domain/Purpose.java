@@ -22,7 +22,7 @@ public class Purpose extends BaseEntity {
     //  지원가능한 gpu목록, cpu 목록
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "puporse_id")
+    @Column(name = "puporseId")
     private Long id;
 
     @Enumerated(EnumType.STRING)

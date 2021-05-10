@@ -27,17 +27,17 @@ public class PurposeService {
     private final PurposeRamRepository purposeRamRepository;
 
     @Transactional
-    public Cpu add_require_cpu(PurposeType purposeType, Cpu cpu, Os os, SpecLevel specLevel) {
+    public Cpu addRequireCpu(PurposeType purposeType, Cpu cpu, Os os, SpecLevel specLevel) {
 
         Optional<Purpose> purpose = purposeRepository.findByPurposeType(purposeType);
 
-        List<PurposeCpu> cpu_list = purpose.get().getPurposeCpus().stream()
-                .filter(registered_cpu -> registered_cpu.getOs() == os)
-                .filter(registered_cpu -> registered_cpu.getSpecLevel() == specLevel)
-                .filter(registered_cpu -> registered_cpu.getCpu().getScore().equals(cpu.getScore()))
+        List<PurposeCpu> cpuList = purpose.get().getPurposeCpus().stream()
+                .filter(registeredCpu -> registeredCpu.getOs() == os)
+                .filter(registeredCpu -> registeredCpu.getSpecLevel() == specLevel)
+                .filter(registeredCpu -> registeredCpu.getCpu().getScore().equals(cpu.getScore()))
                 .collect(Collectors.toList());
 
-        if (cpu_list.isEmpty()) {
+        if (cpuList.isEmpty()) {
             PurposeCpu purposeCpu = new PurposeCpu(purpose.get(), cpu, os, specLevel);
             purposeCpuRepository.save(purposeCpu);
             return cpu;
@@ -46,17 +46,17 @@ public class PurposeService {
     }
 
     @Transactional
-    public Gpu add_require_gpu(PurposeType purposeType, Gpu gpu, Os os, SpecLevel specLevel) {
+    public Gpu addRequireGpu(PurposeType purposeType, Gpu gpu, Os os, SpecLevel specLevel) {
 
         Optional<Purpose> purpose = purposeRepository.findByPurposeType(purposeType);
 
-        List<PurposeGpu> gpu_list = purpose.get().getPurposeGpus().stream()
-                .filter(registered_gpu -> registered_gpu.getOs() == os)
-                .filter(registered_gpu -> registered_gpu.getSpecLevel() == specLevel)
-                .filter(registered_gpu -> registered_gpu.getGpu().getScore().equals(gpu.getScore()))
+        List<PurposeGpu> gpuList = purpose.get().getPurposeGpus().stream()
+                .filter(registeredGpu -> registeredGpu.getOs() == os)
+                .filter(registeredGpu -> registeredGpu.getSpecLevel() == specLevel)
+                .filter(registeredGpu -> registeredGpu.getGpu().getScore().equals(gpu.getScore()))
                 .collect(Collectors.toList());
 
-        if (gpu_list.isEmpty()) {
+        if (gpuList.isEmpty()) {
             PurposeGpu purposeGpu = new PurposeGpu(purpose.get(), gpu, os, specLevel);
             purposeGpuRepository.save(purposeGpu);
             return gpu;
@@ -65,17 +65,17 @@ public class PurposeService {
     }
 
     @Transactional
-    public Integer add_require_ram(PurposeType purposeType, Integer ram, Os os, SpecLevel specLevel) {
+    public Integer addRequireRam(PurposeType purposeType, Integer ram, Os os, SpecLevel specLevel) {
 
         Optional<Purpose> purpose = purposeRepository.findByPurposeType(purposeType);
 
-        List<PurposeRam> gpu_list = purpose.get().getPurposeRams().stream()
-                .filter(registered_gpu -> registered_gpu.getOs() == os)
-                .filter(registered_gpu -> registered_gpu.getSpecLevel() == specLevel)
-                .filter(registered_gpu -> registered_gpu.getRam().equals(ram))
+        List<PurposeRam> gpuList = purpose.get().getPurposeRams().stream()
+                .filter(registeredGpu -> registeredGpu.getOs() == os)
+                .filter(registeredGpu -> registeredGpu.getSpecLevel() == specLevel)
+                .filter(registeredGpu -> registeredGpu.getRam().equals(ram))
                 .collect(Collectors.toList());
 
-        if (gpu_list.isEmpty()) {
+        if (gpuList.isEmpty()) {
             PurposeRam purposeRam = new PurposeRam(purpose.get(), ram, os, specLevel);
             purposeRamRepository.save(purposeRam);
             return ram;
@@ -83,7 +83,7 @@ public class PurposeService {
         throw new IllegalStateException("이미 등록된 RAM입니다.");
     }
 
-    public Map<CpuType, Optional<Integer>> select_cpu_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+    public Map<CpuType, Optional<Integer>> selectCpuFromPurposeTypeList(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
         List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return purposes.stream()
@@ -94,7 +94,7 @@ public class PurposeService {
                 ));
     }
 
-    public ScoreCondition select_ScoreCondition_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+    public ScoreCondition selectScoreConditionFromPurposeTypeList(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
 
         List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
@@ -130,7 +130,7 @@ public class PurposeService {
                 ).build();
     }
 
-    public Map<GpuType, Optional<Integer>> select_gpu_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+    public Map<GpuType, Optional<Integer>> selectGpuFromPurposeTypeList(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
         List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return purposes.stream()
@@ -143,7 +143,7 @@ public class PurposeService {
                 ));
     }
 
-    public Integer select_ram_from_purposeType_list(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
+    public Integer selectRamFromPurposeTypeList(List<PurposeType> purposeTypes, Os os, SpecLevel specLevel) {
         List<Purpose> purposes = purposeRepository.findByPurposeTypeList(purposeTypes);
 
         return purposes.stream()
@@ -154,7 +154,7 @@ public class PurposeService {
                 .max(Integer::compare).get();
     }
 
-    public List<PurposeType> select_purposes_from_major(MajorType majorType) {
+    public List<PurposeType> selectPurposesFromMajor(MajorType majorType) {
 
         return majorType.getPurposeTypes();
     }

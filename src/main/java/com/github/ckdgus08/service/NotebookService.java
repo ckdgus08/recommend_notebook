@@ -45,7 +45,7 @@ public class NotebookService {
         return result;
     }
 
-    public List<Notebook> search_notebook(SearchCondition searchConditionc) {
+    public List<Notebook> searchNotebook(SearchCondition searchConditionc) {
 
         return Arrays.asList();
 

@@ -38,42 +38,42 @@ public class SearchController {
         PageRequest pageRequest = PageRequest.of(page, 10);
 
         List<PurposeType> purposeType = Arrays.stream(purpose.split(","))
-                .map(purpose_string -> PurposeType.valueOf("_" + purpose_string))
+                .map(purposeString -> PurposeType.valueOf("_" + purposeString))
                 .collect(Collectors.toList());
 
-        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_list(purposeType, Os.window, SpecLevel.최소사양);
+        ScoreCondition scoreCondition = purposeService.selectScoreConditionFromPurposeTypeList(purposeType, Os.window, SpecLevel.최소사양);
 
         Page<Notebook> notebook = notebookService.findNotebookByScoreCondition(scoreCondition, pageRequest, null);
 
         if (notebook.getContent().size() == 0) return "redirect:error";
 
         if (scoreCondition.getCpuCondition().containsKey(CpuType.INTEL)) {
-            String cpu_intel_require = "인텔";
-            cpu_intel_require += " " + scoreCondition.getCpuCondition().get(CpuType.INTEL).get() + "점";
+            String cpuIntelRequire = "인텔";
+            cpuIntelRequire += " " + scoreCondition.getCpuCondition().get(CpuType.INTEL).get() + "점";
 
-            model.addAttribute("cpu_intel_require", cpu_intel_require);
+            model.addAttribute("cpuIntelRequire", cpuIntelRequire);
         }
         if (scoreCondition.getCpuCondition().containsKey(CpuType.AMD)) {
-            String cpu_amd_require = "AMD";
-            cpu_amd_require += " " + scoreCondition.getCpuCondition().get(CpuType.AMD).get() + "점";
+            String cpuAmdRequire = "AMD";
+            cpuAmdRequire += " " + scoreCondition.getCpuCondition().get(CpuType.AMD).get() + "점";
 
-            model.addAttribute("cpu_amd_require", cpu_amd_require);
+            model.addAttribute("cpuAmdRequire", cpuAmdRequire);
         }
 
         if (scoreCondition.getGpuCondition().containsKey(GpuType.NVIDIA)) {
-            String gpu_nvidia_require = "NVIDIA";
+            String gpuNvidiaRequire = "NVIDIA";
 
-            gpu_nvidia_require += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
+            gpuNvidiaRequire += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
 
-            model.addAttribute("gpu_nvidia_require", gpu_nvidia_require);
+            model.addAttribute("gpu nvidia require", gpuNvidiaRequire);
         }
 
         if (scoreCondition.getGpuCondition().containsKey(GpuType.AMD)) {
-            String gpu_amd_require = "AMD";
+            String gpuAmdRequire = "AMD";
 
-            gpu_amd_require += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
+            gpuAmdRequire += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
 
-            model.addAttribute("gpu_amd_require", gpu_amd_require);
+            model.addAttribute("gpuAmdRequire", gpuAmdRequire);
         }
 
         model.addAttribute("notebook", notebook.getContent());

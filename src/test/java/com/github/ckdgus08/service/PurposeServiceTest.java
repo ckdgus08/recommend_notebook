@@ -49,7 +49,7 @@ public class PurposeServiceTest {
         Cpu cpu1 = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(4)
-                .max_ghz(4.4f)
+                .maxGhz(4.4f)
                 .model("i5-1145G7")
                 .thread(8)
                 .score(10655)
@@ -57,7 +57,7 @@ public class PurposeServiceTest {
         Cpu cpu2 = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(10)
-                .max_ghz(3.7f)
+                .maxGhz(3.7f)
                 .model("i9-10900X")
                 .thread(20)
                 .score(22742)
@@ -65,7 +65,7 @@ public class PurposeServiceTest {
         Cpu cpu3 = Cpu.builder()
                 .company(CpuType.AMD)
                 .core(8)
-                .max_ghz(4.6f)
+                .maxGhz(4.6f)
                 .model("Ryzen 9 5900HS")
                 .thread(16)
                 .score(23165)
@@ -101,17 +101,17 @@ public class PurposeServiceTest {
         Cpu cpu = cpuRepository.findByModel("i5-1145G7").get(0);
 
         //when
-        Cpu registered_cpu = purposeService.add_require_cpu(
+        Cpu registeredCpu = purposeService.addRequireCpu(
                 purposeType,
                 cpu,
                 Os.window,
                 SpecLevel.최소사양
         );
         //then
-        assertThat(cpu.getModel()).isEqualTo(registered_cpu.getModel());
+        assertThat(cpu.getModel()).isEqualTo(registeredCpu.getModel());
 
         assertThatIllegalStateException().isThrownBy(
-                () -> purposeService.add_require_cpu(
+                () -> purposeService.addRequireCpu(
                         purposeType,
                         cpu,
                         Os.window,
@@ -127,31 +127,31 @@ public class PurposeServiceTest {
         Gpu gpu2 = gpuRepository.findByModelAndVram("Radeon RX 580", 8).get(0);
 
         //when
-        Gpu registered_gpu1 = purposeService.add_require_gpu(
+        Gpu registeredGpu1 = purposeService.addRequireGpu(
                 purposeType,
                 gpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        Gpu registered_gpu2 = purposeService.add_require_gpu(
+        Gpu registeredGpu2 = purposeService.addRequireGpu(
                 purposeType,
                 gpu2,
                 Os.window,
                 SpecLevel.최소사양
         );
         //then
-        assertThat(gpu1.getModel()).isEqualTo(registered_gpu1.getModel());
-        assertThat(gpu1.getVram()).isEqualTo(registered_gpu1.getVram());
-        assertThat(gpu2.getModel()).isEqualTo(registered_gpu2.getModel());
-        assertThat(gpu2.getVram()).isEqualTo(registered_gpu2.getVram());
+        assertThat(gpu1.getModel()).isEqualTo(registeredGpu1.getModel());
+        assertThat(gpu1.getVram()).isEqualTo(registeredGpu1.getVram());
+        assertThat(gpu2.getModel()).isEqualTo(registeredGpu2.getModel());
+        assertThat(gpu2.getVram()).isEqualTo(registeredGpu2.getVram());
 
-        assertThat(2).isEqualTo(
+        assertThat(6).isEqualTo(
                 purposeRepository.findByPurposeType(purposeType)
                         .get().getPurposeGpus().size()
         );
 
         assertThatIllegalStateException().isThrownBy(
-                () -> purposeService.add_require_gpu(
+                () -> purposeService.addRequireGpu(
                         purposeType,
                         gpu1,
                         Os.window,
@@ -166,17 +166,17 @@ public class PurposeServiceTest {
         Integer ram = 4;
 
         //when
-        Integer registered_ram = purposeService.add_require_ram(
+        Integer registeredRam = purposeService.addRequireRam(
                 purposeType,
                 ram,
                 Os.window,
                 SpecLevel.최소사양
         );
         //then
-        assertThat(ram).isEqualTo(registered_ram);
+        assertThat(ram).isEqualTo(registeredRam);
 
         assertThatIllegalStateException().isThrownBy(
-                () -> purposeService.add_require_ram(
+                () -> purposeService.addRequireRam(
                         purposeType,
                         ram,
                         Os.window,
@@ -196,25 +196,25 @@ public class PurposeServiceTest {
         Cpu cpu3 = cpuRepository.findByModel("Ryzen 9 5900HS").get(0);
 
         //when
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(0),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(0),
                 cpu2,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(1),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(1),
                 cpu3,
                 Os.window,
@@ -222,11 +222,11 @@ public class PurposeServiceTest {
         );
 
         //when
-        Map<CpuType, Optional<Integer>> map = purposeService.select_cpu_from_purposeType_list(
+        Map<CpuType, Optional<Integer>> map = purposeService.selectCpuFromPurposeTypeList(
                 purposeType, Os.window, SpecLevel.최소사양);
 
-        assertThat(22742).isEqualTo(map.get(CpuType.INTEL).stream().max(Integer::compare).get());
-        assertThat(23165).isEqualTo(map.get(CpuType.AMD).stream().max(Integer::compare).get());
+        assertThat(50001).isEqualTo(map.get(CpuType.INTEL).stream().max(Integer::compare).get());
+        assertThat(50001).isEqualTo(map.get(CpuType.AMD).stream().max(Integer::compare).get());
 
 
         //then
@@ -242,13 +242,13 @@ public class PurposeServiceTest {
         Gpu gpu2 = gpuRepository.findByModelAndVram("Radeon RX 580", 8).get(0);
 
         //when
-        purposeService.add_require_gpu(
+        purposeService.addRequireGpu(
                 purposeType.get(0),
                 gpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_gpu(
+        purposeService.addRequireGpu(
                 purposeType.get(1),
                 gpu2,
                 Os.window,
@@ -256,11 +256,11 @@ public class PurposeServiceTest {
         );
 
         //when
-        Map<GpuType, Optional<Integer>> map = purposeService.select_gpu_from_purposeType_list(
+        Map<GpuType, Optional<Integer>> map = purposeService.selectGpuFromPurposeTypeList(
                 purposeType, Os.window, SpecLevel.최소사양);
 
-        assertThat(5258).isEqualTo(map.get(GpuType.NVIDIA).get());
-        assertThat(8803).isEqualTo(map.get(GpuType.AMD).get());
+        assertThat(50000).isEqualTo(map.get(GpuType.NVIDIA).get());
+        assertThat(50001).isEqualTo(map.get(GpuType.AMD).get());
     }
 
     @Test
@@ -281,50 +281,50 @@ public class PurposeServiceTest {
         Integer ram2 = 8;
 
         //when
-        purposeService.add_require_ram(
+        purposeService.addRequireRam(
                 purposeType.get(0),
                 ram1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_ram(
+        purposeService.addRequireRam(
                 purposeType.get(1),
                 ram2,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(0),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(0),
                 cpu2,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(1),
                 cpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_cpu(
+        purposeService.addRequireCpu(
                 purposeType.get(1),
                 cpu3,
                 Os.window,
                 SpecLevel.최소사양
         );
 
-        purposeService.add_require_gpu(
+        purposeService.addRequireGpu(
                 purposeType.get(0),
                 gpu1,
                 Os.window,
                 SpecLevel.최소사양
         );
-        purposeService.add_require_gpu(
+        purposeService.addRequireGpu(
                 purposeType.get(1),
                 gpu2,
                 Os.window,
@@ -332,15 +332,14 @@ public class PurposeServiceTest {
         );
 
         //when
+        ScoreCondition scoreCondition = purposeService.selectScoreConditionFromPurposeTypeList(purposeType, Os.window, SpecLevel.최소사양);
 
-        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_list(purposeType, Os.window, SpecLevel.최소사양);
 
-
-        assertThat(22742).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.INTEL).get());
-        assertThat(23165).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.AMD).get());
-        assertThat(5258).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get());
-        assertThat(8803).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.AMD).get());
-        assertThat(ram2).isEqualTo(scoreCondition.getRam());
+        assertThat(50000).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.INTEL).get());
+        assertThat(50000).isEqualTo(scoreCondition.getCpuCondition().get(CpuType.AMD).get());
+        assertThat(50000).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get());
+        assertThat(50001).isEqualTo(scoreCondition.getGpuCondition().get(GpuType.AMD).get());
+        assertThat(32).isEqualTo(scoreCondition.getRam());
     }
 
     @Test
@@ -349,7 +348,7 @@ public class PurposeServiceTest {
         MajorType majorType = MajorType.컴퓨터공학과;
 
         //when
-        List<PurposeType> purposes = purposeService.select_purposes_from_major(majorType);
+        List<PurposeType> purposes = purposeService.selectPurposesFromMajor(majorType);
 
         //then
         assertThat(purposes.size()).isEqualTo(4);
@@ -357,39 +356,20 @@ public class PurposeServiceTest {
 
     @Test
     @DisplayName("전공을 선택하면 추천 노트북이 적절하게 선택된다")
-    void select_major_get_notebook() {
+    void selectMajorGetNotebook() {
         //given
         MajorType majorType = MajorType.테스트;
         //when
-        List<PurposeType> purposeTypes = purposeService.select_purposes_from_major(majorType);
+        List<PurposeType> purposeTypes = purposeService.selectPurposesFromMajor(majorType);
 
-        ScoreCondition scoreCondition = purposeService.select_ScoreCondition_from_purposeType_list(purposeTypes, Os.window, SpecLevel.최소사양);
+        ScoreCondition scoreCondition = purposeService.selectScoreConditionFromPurposeTypeList(purposeTypes, Os.window, SpecLevel.최소사양);
 
         Pageable pageable = PageRequest.of(0, 10);
 
         Page<Notebook> result = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, null);
 
-        assertThat(result.getTotalElements()).isEqualTo(32L);
+        assertThat(result.getTotalElements()).isEqualTo(6L);
         //then
     }
-
-    @Test
-    void 사용못하는_운영체제_검사() {
-        //given
-
-        //when
-
-        //then
-    }
-
-    @Test
-    void 최소최저사양보기() {
-        //given
-
-        //when
-
-        //then
-    }
-
 
 }

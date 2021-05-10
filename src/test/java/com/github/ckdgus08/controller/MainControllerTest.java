@@ -24,7 +24,7 @@ public class MainControllerTest {
 //
 //        //then
 //        assertThatIllegalArgumentException().isThrownBy(
-//                () -> mainController.search_notebook(searchCondition)
+//                () -> mainController.searchNotebook(searchCondition)
 //        );
 //    }
 //
@@ -32,13 +32,13 @@ public class MainControllerTest {
 //    @Test
 //    void 전공_입력값() {
 //        //given
-//        String major_string = "major_test";
+//        String majorString = "majorTest";
 //
 //        //when
 //
 //        //then
 //        assertThatIllegalArgumentException().isThrownBy(
-//                () -> MajorType.valueOf(major_string)
+//                () -> MajorType.valueOf(majorString)
 //        );
 //    }
 //
@@ -46,17 +46,17 @@ public class MainControllerTest {
 //    @Test
 //    void 전공_입력_유효성() {
 //        //given
-//        String success_major1 = "기계공학과";
-//        String success_major2 = "abcde";
-//        String fail_major1 = "_기계";
+//        String successMajor1 = "기계공학과";
+//        String successMajor2 = "abcde";
+//        String failMajor1 = "_기계";
 //        //when
-//        boolean success_result1 = mainController.validate_major(true_major1);
-//        boolean success_result2 = mainController.validate_major(true_major2);
-//        boolean fail_result1 = mainController.validate_major(false_major1);
+//        boolean successResult1 = mainController.validateMajor(trueMajor1);
+//        boolean successResult2 = mainController.validateMajor(trueMajor2);
+//        boolean failResult1 = mainController.validateMajor(falseMajor1);
 //        //then
-//        assertThat(success_result1).isEqualTo(true);
-//        assertThat(success_result2).isEqualTo(true);
-//        assertThat(fail_result1).isEqualTo(true);
+//        assertThat(successResult1).isEqualTo(true);
+//        assertThat(successResult2).isEqualTo(true);
+//        assertThat(failResult1).isEqualTo(true);
 //    }
 
     @DisplayName("프로그램은 필수적으로 선택되지 않으면 전공에 따라 자동으로 선택된다.")

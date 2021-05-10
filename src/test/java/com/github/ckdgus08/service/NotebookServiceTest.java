@@ -46,7 +46,7 @@ public class NotebookServiceTest {
         Cpu cpu1 = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(4)
-                .max_ghz(4.4f)
+                .maxGhz(4.4f)
                 .model("i5-1145G7")
                 .thread(8)
                 .score(10655)
@@ -54,7 +54,7 @@ public class NotebookServiceTest {
         Cpu cpu2 = Cpu.builder()
                 .company(CpuType.INTEL)
                 .core(10)
-                .max_ghz(3.7f)
+                .maxGhz(3.7f)
                 .model("i9-10900X")
                 .thread(20)
                 .score(22742)
@@ -62,7 +62,7 @@ public class NotebookServiceTest {
         Cpu cpu3 = Cpu.builder()
                 .company(CpuType.AMD)
                 .core(8)
-                .max_ghz(4.6f)
+                .maxGhz(4.6f)
                 .model("Ryzen 9 5900HS")
                 .thread(16)
                 .score(23165)
@@ -139,12 +139,12 @@ public class NotebookServiceTest {
                 .weight(1.95f)
                 .build();
         //when
-        Long saved_id = notebookService.save(notebook2);
+        Long savedId = notebookService.save(notebook2);
         List<Notebook> result = notebookRepository.findByModel("삼성전자 노트북5 metal 테스트-01");
 
         //then
         assertThat(result.size()).isEqualTo(1);
-        assertThat(saved_id).isEqualTo(result.get(0).getId());
+        assertThat(savedId).isEqualTo(result.get(0).getId());
     }
 
     @Test
@@ -162,7 +162,7 @@ public class NotebookServiceTest {
                 .weight(1.95f)
                 .build();
         //when
-        Long saved_id1 = notebookService.save(notebook1);
+        Long savedId1 = notebookService.save(notebook1);
 
         assertThatIllegalStateException().isThrownBy(
                 () -> notebookService.save(notebook1)
@@ -173,19 +173,19 @@ public class NotebookServiceTest {
     void 사양별_노트북목록_검색() {
         //given
 
-        Map<CpuType, Optional<Integer>> cpu_map = new HashMap<>();
-        cpu_map.put(CpuType.INTEL, Optional.of(22742));
-        cpu_map.put(CpuType.AMD, Optional.of(20000));
+        Map<CpuType, Optional<Integer>> cpuMap = new HashMap<>();
+        cpuMap.put(CpuType.INTEL, Optional.of(22742));
+        cpuMap.put(CpuType.AMD, Optional.of(20000));
 
         ScoreCondition scoreCondition = new ScoreCondition();
-        scoreCondition.setCpuCondition(cpu_map);
+        scoreCondition.setCpuCondition(cpuMap);
         Pageable pageable = PageRequest.of(0, 50);
 
         //when
         Page<Notebook> result = notebookService.findNotebookByScoreCondition(scoreCondition, pageable, null);
 
         //then
-        assertThat(result.getContent().size()).isEqualTo(3);
+        assertThat(result.getContent().size()).isEqualTo(9);
     }
 
 
@@ -193,15 +193,15 @@ public class NotebookServiceTest {
     void 검색정렬순서() {
         //given
         SearchCondition searchCondition = SearchCondition.builder()
-                .search_order(Map.of(0, "가격"))
+                .searchOrder(Map.of(0, "가격"))
                 .build();
 
-        Map<CpuType, Optional<Integer>> cpu_map = new HashMap<>();
-        cpu_map.put(CpuType.INTEL, Optional.of(22742));
-        cpu_map.put(CpuType.AMD, Optional.of(10000));
+        Map<CpuType, Optional<Integer>> cpuMap = new HashMap<>();
+        cpuMap.put(CpuType.INTEL, Optional.of(22742));
+        cpuMap.put(CpuType.AMD, Optional.of(10000));
 
         ScoreCondition scoreCondition = new ScoreCondition();
-        scoreCondition.setCpuCondition(cpu_map);
+        scoreCondition.setCpuCondition(cpuMap);
         Pageable pageable = PageRequest.of(0, 50);
 
         //when
@@ -213,7 +213,6 @@ public class NotebookServiceTest {
 //                .sorted(Comparator.comparingInt(Notebook::getPrice))
 //                .collect(Collectors.toList());
 
-        System.out.println("result2 = " + result2.getContent());
 //        System.out.println("result1_sorted = " + result1_sorted);
 //
 //        assertThat(result2.getContent().get(0)).isEqualTo(result1_sorted.get(0));

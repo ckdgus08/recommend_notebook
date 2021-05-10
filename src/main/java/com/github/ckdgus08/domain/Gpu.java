@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Gpu extends BaseEntity {
 
     @Id
-    @Column(name = "gpu_id")
+    @Column(name = "gpuId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

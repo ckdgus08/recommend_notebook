@@ -18,18 +18,18 @@ public class SearchCondition {
     private MajorType major;
     private List<PurposeType> purposeTypes;
 
-    private int min_price;
-    private int max_price;
+    private int minPrice;
+    private int maxPrice;
 
-    private float min_weight;
-    private float max_weight;
+    private float minWeight;
+    private float maxWeight;
 
-    private float min_inch;
-    private float max_inch;
+    private float minInch;
+    private float maxInch;
 
-    private Map<Integer, String> search_order = new HashMap<>();
+    private Map<Integer, String> searchOrder = new HashMap<>();
 
-    public SearchCondition(String major, String purpose_string, String price_string, String weight_string, String inch_string) {
+    public SearchCondition(String major, String purposeString, String priceString, String weightString, String inchString) {
 
         // TODO: 2021/03/30 생성자 코드 완성하기
         this.major = MajorType.valueOf(major);

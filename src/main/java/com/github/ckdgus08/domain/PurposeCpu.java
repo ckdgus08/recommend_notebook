@@ -20,7 +20,7 @@ public class PurposeCpu {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "purpose_id")
+    @JoinColumn(name = "purposeId")
     private Purpose purpose;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +30,7 @@ public class PurposeCpu {
     private SpecLevel specLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cpu_id")
+    @JoinColumn(name = "cpuId")
     private Cpu cpu;
 
     public PurposeCpu(Purpose purpose, Cpu cpu, Os os, SpecLevel specLevel) {

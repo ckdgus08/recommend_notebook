@@ -11,11 +11,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Builder
-public class Review_deep extends BaseEntity {
+public class ReviewDeep extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_deep_id")
+    @Column(name = "reviewDeepId")
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -26,19 +26,19 @@ public class Review_deep extends BaseEntity {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "reviewId")
     private Review review;
 
-    public Review_deep(Review review, ReviewType reviewType, String content) {
+    public ReviewDeep(Review review, ReviewType reviewType, String content) {
         this.id = null;
         this.reviewType = reviewType;
         this.content = content;
         if (review != null)
-            addReview_deep(review);
+            addReviewDeep(review);
     }
 
-    public void addReview_deep(Review review) {
+    public void addReviewDeep(Review review) {
         this.review = review;
-        review.getReview_deeps().add(this);
+        review.getReviewDeeps().add(this);
     }
 }

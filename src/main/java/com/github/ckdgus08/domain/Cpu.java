@@ -11,11 +11,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@ToString(of = {"company", "model", "core", "thread", "origin_ghz", "max_ghz", "score"})
+@ToString(of = {"company", "model", "core", "thread", "originGhz", "maxGhz", "score"})
 public class Cpu extends BaseEntity {
 
     @Id
-    @Column(name = "cpu_id")
+    @Column(name = "cpuId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -23,7 +23,7 @@ public class Cpu extends BaseEntity {
     private CpuType company;
 
     @Column(length = 25)
-    private String code_name;
+    private String codeName;
 
     @Column(length = 40)
     private String model;
@@ -34,27 +34,27 @@ public class Cpu extends BaseEntity {
     private Integer nm;
     private Integer core;
     private Integer thread;
-    private Float origin_ghz;
-    private Float max_ghz;
+    private Float originGhz;
+    private Float maxGhz;
     private Float cache;
 
     private Integer score;
 
-    public Cpu(CpuType company, String generation, String code_name, String model, Integer core, Integer score) {
+    public Cpu(CpuType company, String generation, String codeName, String model, Integer core, Integer score) {
         this.id = null;
         this.company = company;
         this.generation = generation;
         this.model = model;
         this.core = core;
-        this.code_name = code_name;
+        this.codeName = codeName;
         this.score = score;
     }
 
-    public Cpu(CpuType company, Integer core, Float origin_ghz, Integer score) {
+    public Cpu(CpuType company, Integer core, Float originGhz, Integer score) {
         this.id = null;
         this.company = company;
         this.core = core;
-        this.origin_ghz = origin_ghz;
+        this.originGhz = originGhz;
         this.score = score;
     }
 

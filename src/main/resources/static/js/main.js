@@ -107,7 +107,7 @@ function setNextPurpose(major) {
         vid.innerHTML += '<input type="checkbox" id="purpose_vid_' + index + '" name="purpose" value="' + vid_list[index] + '">' +
             '<label for="purpose_vid_' + index + '" className="checkbox__label">' + vid_list[index] + '</label>';
 
-    let pro_list = ["인터넷방송송출", "OBS"];
+    let pro_list = ["인터넷방송송출", "OBS", "테스트"];
     pro.innerHTML = ''
     for (let index in pro_list)
         pro.innerHTML += '<input type="checkbox" id="purpose_pro_' + index + '" name="purpose" value="' + pro_list[index] + '">' +

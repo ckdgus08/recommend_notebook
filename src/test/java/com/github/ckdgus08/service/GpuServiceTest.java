@@ -36,12 +36,12 @@ public class GpuServiceTest {
                 .vram(4)
                 .build();
         //when
-        Long saved_id = gpuService.save(gpu);
+        Long savedId = gpuService.save(gpu);
         List<Gpu> result = gpuRepository.findByModelAndVram("GTX 테스트-01", 4);
 
         //then
         assertThat(result.size()).isEqualTo(1);
-        assertThat(saved_id).isEqualTo(result.get(0).getId());
+        assertThat(savedId).isEqualTo(result.get(0).getId());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class GpuServiceTest {
                 .vram(4)
                 .build();
         //when
-        Long saved_id1 = gpuService.save(gpu);
+        Long savedId1 = gpuService.save(gpu);
 
         assertThatIllegalStateException().isThrownBy(
                 () -> gpuService.save(gpu)

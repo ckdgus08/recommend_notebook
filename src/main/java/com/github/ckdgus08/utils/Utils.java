@@ -14,12 +14,12 @@ import java.util.List;
 public class Utils {
 
     public FileWriter getWriter(String fileName) throws IOException {
-        File new_file = new File(fileName);
+        File newFile = new File(fileName);
 
-        if (!new_file.exists())
-            new_file.createNewFile();
+        if (!newFile.exists())
+            newFile.createNewFile();
 
-        return new FileWriter(new_file, true);
+        return new FileWriter(newFile, true);
     }
 
     public List<String> getFileLines(String fileName) throws IOException {

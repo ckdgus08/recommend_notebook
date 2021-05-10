@@ -19,7 +19,7 @@ public class PurposeGpu {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "purpose_id")
+    @JoinColumn(name = "purposeId")
     private Purpose purpose;
 
     @Enumerated(EnumType.STRING)
@@ -28,7 +28,7 @@ public class PurposeGpu {
     private SpecLevel specLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gpu_id")
+    @JoinColumn(name = "gpuId")
     private Gpu gpu;
 
     public PurposeGpu(Purpose purpose, Gpu gpu, Os os, SpecLevel specLevel) {

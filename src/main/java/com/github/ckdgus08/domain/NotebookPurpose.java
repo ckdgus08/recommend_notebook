@@ -17,11 +17,11 @@ public class NotebookPurpose extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "notebook_id")
+    @JoinColumn(name = "notebookId")
     private Notebook notebook;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "purpose_id")
+    @JoinColumn(name = "purposeId")
     private Purpose purpose;
 
     public NotebookPurpose(Notebook notebook, Purpose purpose) {
