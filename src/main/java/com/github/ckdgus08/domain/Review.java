@@ -1,6 +1,7 @@
 package com.github.ckdgus08.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.ckdgus08.domain.enum_.MajorType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,11 @@ public class Review extends BaseEntity {
 
     @Column(length = 4096)
     private String content;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private MajorType majorType;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "notebookId")

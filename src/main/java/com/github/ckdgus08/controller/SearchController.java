@@ -65,7 +65,7 @@ public class SearchController {
 
             gpuNvidiaRequire += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
 
-            model.addAttribute("gpu nvidia require", gpuNvidiaRequire);
+            model.addAttribute("gpuNvidiaRequire", gpuNvidiaRequire);
         }
 
         if (scoreCondition.getGpuCondition().containsKey(GpuType.AMD)) {
