@@ -109,8 +109,8 @@
     padding: 5px 20px;
     border: solid 2px var(---gray-blue);
     border-radius: 15px;
+    font-size: 20px;
     height: 50px;
-    font-size: 22px;
     font-weight: 500;
     color: var(---blue);
     word-break: break-all;
@@ -153,5 +153,45 @@
     border: solid 2px var(---blue);
     background-color: var(---blue);
     color: white;
+}
+
+ul.review {
+    text-align: center;
+    padding-left: 0;
+}
+
+.review li {
+    display: table;
+    border: solid 2px var(---gray-blue);
+    border-radius: 15px;
+}
+
+.review div {
+    display: inherit;
+    padding: 5px 20px;
+    height: 50px;
+    color: var(---blue);
+    word-break: break-all;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.review_title {
+    border: none;
+    font-size: 12px;
+    height: 15px;
+    font-weight: bold;
+}
+
+div.review_detail {
+    border: none;
+    height: 15px;
+    font-size: 9px;
+}
+
+div.review_content {
+    border: none;
+    height: content-box;
+    font-size: 10px;
 }
 

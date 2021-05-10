@@ -24,10 +24,10 @@
             <div class="sub-block_content" data-slide-index="1">
                 <div class="sub-block__move_button">
                     <button class="move_button__type purpose" th:text="${purpose}"></button>
-                    <button class="move_button__type maj" th:text="${cpu_intel_require}"></button>
-                    <button class="move_button__type all" th:text="${gpu_nvidia_require}"></button>
-                    <button class="move_button__type gam" th:text="${cpu_amd_require}"></button>
-                    <button class="move_button__type vid" th:text="${gpu_amd_require}"></button>
+                    <button class="move_button__type maj" th:text="${cpuIntelRequire}"></button>
+                    <button class="move_button__type all" th:text="${gpuNvidiaRequire}"></button>
+                    <button class="move_button__type gam" th:text="${cpuAmdRequire}"></button>
+                    <button class="move_button__type vid" th:text="${gpuAmdRequire}"></button>
                     <button class="move_button__type pro" th:text="${ram}"></button>
                 </div>
             </div>
@@ -45,6 +45,11 @@
                     <div class="radio__label"
                          th:text="${notebooks.getGpu().getModel() + ' ' + notebooks.getGpu().getScore()}"></div>
                     <div class="radio__label" th:text="${notebooks.getPrice()}"></div>
+
+                    <ul class="review" style="list-style: none">
+
+                    </ul>
+
                     <button class="move_button__type choose" th:data-slide-index="${notebooksStat.index}">선택하기</button>
                 </div>
             </div>

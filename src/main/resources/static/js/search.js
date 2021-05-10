@@ -1,4 +1,3 @@
-let index = 2;
 let now = [0, 1];
 
 window.onload = function () {
@@ -14,22 +13,52 @@ window.onload = function () {
 
         chooseButtonElement.onclick = function () {
             let attribute = this.getAttribute("data-slide-index");
-            let number = now.indexOf(parseInt(attribute));
+            let index = now.indexOf(parseInt(attribute));
 
             let main_block_show = document.getElementsByClassName("slide__main-block");
             for (const mainBlockShowElement of main_block_show) {
-                if (!mainBlockShowElement.classList.contains('hidden') && parseInt(mainBlockShowElement.getAttribute("data-slide-index")) !== number) {
+                if (!mainBlockShowElement.classList.contains('hidden') && parseInt(mainBlockShowElement.getAttribute("data-slide-index")) !== index) {
                     mainBlockShowElement.classList.add('hidden');
 
                     let innerText = document.getElementById("main_progress").innerText;
                     document.querySelector("div[data-slide-index='" + innerText + "']").classList.remove('hidden');
                     document.getElementById("main_progress").innerText = (parseInt(innerText) + 1).toString();
+                    getReview(innerText, 1);
                     break;
                 }
             }
+
         }
 
     }
 
+    getReview(0, 1);
+    getReview(1, 1);
 
 }
+
+function getReview(index, page) {
+    let mainBlock = document.querySelector("div[data-slide-index=\"" + index + "\"].slide__main-block");
+    let model = mainBlock.getElementsByClassName("radio__label")[1].innerHTML;
+    let review = mainBlock.getElementsByClassName("review")[0];
+    let majorType = "테스트";
+
+    $.ajax({
+        method: 'GET',
+        url: 'api/review?model=' + model + '&majorType=' + majorType + '&page=' + (page - 1),
+        dataType: 'json',
+        success: function (data) {
+            if (data.length > 0) {
+                review.innerHTML = "";
+                for (let i in data) {
+                    let list = document.createElement("li");
+                    list.innerHTML = "<div class='review_title'>" + data[i].title + "</div>"
+                    list.innerHTML += "<div class='review_detail'>" + data[i].detail + "</div>"
+                    list.innerHTML += "<div class='review_content'>" + data[i].content + "</div>"
+                    review.append(list);
+                }
+            }
+        }
+    })
+}
+
