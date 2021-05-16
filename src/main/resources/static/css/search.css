@@ -195,3 +195,10 @@ div.review_content {
     font-size: 10px;
 }
 
+div.review_content_deep {
+    border: none;
+    height: content-box;
+    font-size: 10px;
+    white-space: pre-line;
+}
+

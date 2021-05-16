@@ -51,14 +51,41 @@ function getReview(index, page) {
             if (data.length > 0) {
                 review.innerHTML = "";
                 for (let i in data) {
+                    let keywords = deep(data[i].content)
                     let list = document.createElement("li");
                     list.innerHTML = "<div class='review_title'>" + data[i].title + "</div>"
                     list.innerHTML += "<div class='review_detail'>" + data[i].detail + "</div>"
                     list.innerHTML += "<div class='review_content'>" + data[i].content + "</div>"
+                    let deep_word = "";
+                    for (const keyword of keywords) {
+                        deep_word += keyword + "\n";
+                    }
+                    list.innerHTML += "<div class='review_content_deep'>" + deep_word + "</div>"
+
                     review.append(list);
                 }
             }
         }
     })
+}
+
+function deep(str) {
+    let temp_index = 0;
+    let keywords = [];
+    $.ajax({
+        method: 'GET',
+        url: 'http://localhost:8000/api/deep/' + str,
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            if (data.length > 0) {
+                for (let element of data) {
+                    keywords[temp_index] = element;
+                    temp_index++;
+                }
+            }
+        }
+    })
+    return keywords;
 }
 
