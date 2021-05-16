@@ -73,10 +73,10 @@ function deep(str) {
     let temp_index = 0;
     let keywords = [];
     $.ajax({
+        async: false,
         method: 'GET',
         url: 'http://localhost:8000/api/deep/' + str,
         dataType: 'json',
-        async: false,
         success: function (data) {
             if (data.length > 0) {
                 for (let element of data) {
