@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 @SpringBootTest
 @Transactional
 public class ReviewServiceTest {
@@ -24,6 +26,45 @@ public class ReviewServiceTest {
     @Autowired
     ReviewService reviewService;
 
+    @Test
+    @DisplayName("후기 등록")
+    void createReview() {
+        //given
+        String userId = "test_user";
+        String major = "테스트";
+
+        String model = "Test notebook1";
+
+        String title = "테스트 리뷰 제목";
+        String content = "테스트 리뷰 본문";
+
+        //when
+        Review review = reviewService.createReview(userId, major, model, title, content);
+
+        //then
+        Assertions.assertThat(review.getTitle()).isEqualTo(title);
+        Assertions.assertThat(review.getMajorType()).isEqualTo(MajorType.valueOf(major));
+        Assertions.assertThat(review.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    @DisplayName("후기 등록시 DB에 등록되어 있지 않은 노트북명 입력시 에러가 발생한다.")
+    void validate_model() {
+        //given
+        String userId = "test_user";
+        String major = "테스트";
+
+        String model = "없는 노트북 모델명";
+
+        String title = "테스트 리뷰 제목";
+        String content = "테스트 리뷰 본문";
+
+        //when
+        //then
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> reviewService.createReview(userId, major, model, title, content)
+        );
+    }
 
     @Test
     @DisplayName("노트북 모델, 전공선택시 전공에 맞는 리뷰를 반환한다.")
