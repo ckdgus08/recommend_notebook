@@ -145,7 +145,8 @@ public class PurposeServiceTest {
         assertThat(gpu2.getModel()).isEqualTo(registeredGpu2.getModel());
         assertThat(gpu2.getVram()).isEqualTo(registeredGpu2.getVram());
 
-        assertThat(6).isEqualTo(
+
+        assertThat(2).isEqualTo(
                 purposeRepository.findByPurposeType(purposeType)
                         .get().getPurposeGpus().size()
         );
