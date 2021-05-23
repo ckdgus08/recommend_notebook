@@ -19,7 +19,7 @@ public class NotebookApiController {
     private final ReviewService reviewService;
 
     @GetMapping("/api/review")
-    public List<Review> findAllBbs(
+    public List<Review> selectReviewWithMajor(
             @RequestParam(value = "model") String model,
             @RequestParam(value = "majorType") MajorType majorType,
             @RequestParam(value = "page", defaultValue = "0") int page) {
