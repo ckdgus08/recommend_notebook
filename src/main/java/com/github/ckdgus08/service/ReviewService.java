@@ -18,4 +18,12 @@ public class ReviewService {
     public List<Review> selectReviewWithMajor(String model, MajorType majorType, Pageable pageRequest) {
         return reviewRepository.selectReviewWithMajor(model, majorType, pageRequest);
     }
+
+    public Review createReview(String userId, String major, String model, String title, String content) {
+
+        // TODO: 2021/05/23 user 엔티티 추가
+//        Review review = new Review()
+//        reviewRepository.save();
+        return null;
+    }
 }
