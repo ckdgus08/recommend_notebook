@@ -9,4 +9,5 @@ public interface NotebookRepository extends JpaRepository<Notebook, Long>, Noteb
 
     List<Notebook> findByModel(String model);
 
+
 }

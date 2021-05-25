@@ -32,6 +32,16 @@ public class NotebookService {
         return result.getId();
     }
 
+    public Notebook findByModel(String model) {
+        List<Notebook> result = notebookRepository.findByModel(model);
+        if (result.isEmpty())
+            throw new IllegalArgumentException("등록되지 않은 모델입니다.");
+        else if (result.size() == 1)
+            return result.get(0);
+        else
+            throw new IllegalStateException("[에러] 중복등록된 모델입니다.");
+    }
+
 
     public void validateDuplicate(Notebook notebook) {
         List<Notebook> result = notebookRepository.findByModel(notebook.getModel());

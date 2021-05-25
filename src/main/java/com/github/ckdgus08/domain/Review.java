@@ -32,13 +32,18 @@ public class Review extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private MajorType majorType;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private User user;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "notebookId")
     private Notebook notebook;
 
-    public Review(Notebook notebook, String detail, String title, String content) {
+    public Review(Notebook notebook, User user, String detail, String title, String content) {
         this.id = null;
+        this.user = user;
         this.detail = detail;
         this.title = title;
         this.content = content;
