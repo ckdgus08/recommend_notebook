@@ -41,9 +41,10 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "notebookId")
     private Notebook notebook;
 
-    public Review(Notebook notebook, User user, String detail, String title, String content) {
+    public Review(Notebook notebook, User user, MajorType majorType, String detail, String title, String content) {
         this.id = null;
         this.user = user;
+        this.majorType = majorType;
         this.detail = detail;
         this.title = title;
         this.content = content;

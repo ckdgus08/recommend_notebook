@@ -2,6 +2,7 @@ package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Review;
 import com.github.ckdgus08.domain.enum_.MajorType;
+import com.github.ckdgus08.dto.ReviewDto;
 import com.github.ckdgus08.repository.ReviewRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -38,8 +39,15 @@ public class ReviewServiceTest {
         String title = "테스트 리뷰 제목";
         String content = "테스트 리뷰 본문";
 
+        ReviewDto reviewDto = ReviewDto.builder().
+                userId(userId).
+                major(major).
+                model(model).
+                title(title).
+                content(content).build();
+
         //when
-        Review review = reviewService.createReview(userId, major, model, title, content);
+        Review review = reviewService.createReview(reviewDto);
 
         //then
         Assertions.assertThat(review.getTitle()).isEqualTo(title);
@@ -48,21 +56,28 @@ public class ReviewServiceTest {
     }
 
     @Test
-    @DisplayName("후기 등록시 DB에 등록되어 있지 않은 노트북명 입력시 에러가 발생한다.")
+    @DisplayName("DB에 등록되어 있지 않은 노트북명 입력시 에러가 발생한다.")
     void validate_model() {
         //given
         String userId = "test_user";
         String major = "테스트";
 
-        String model = "없는 노트북 모델명";
+        String model = "Test Model error";
 
         String title = "테스트 리뷰 제목";
         String content = "테스트 리뷰 본문";
 
+        ReviewDto reviewDto = ReviewDto.builder().
+                userId(userId).
+                major(major).
+                model(model).
+                title(title).
+                content(content).build();
+
         //when
         //then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> reviewService.createReview(userId, major, model, title, content)
+                () -> reviewService.createReview(reviewDto)
         );
     }
 
@@ -79,37 +94,23 @@ public class ReviewServiceTest {
 
         //then
         Assertions.assertThat(1).isEqualTo(result.size());
+        Assertions.assertThat(majorType).isEqualTo(result.get(0).getMajorType());
     }
 
-//    @Test
-//    @DisplayName("전공을 입력하지 않으면, 전공에 상관없이 리뷰를 반환한다.")
-//    void dd() {
-//        //given
-//        String model = "";
-//        MajorType majorType = MajorType.테스트;
-//        PageRequest pageRequest = PageRequest.of(0, 10);
-//
-//        //when
-//        reviewService.selectReviewWithMajor(model, majorType, pageRequest);
-//
-//        //then
-//        Assertions.assertThat().isEqualTo();
-//    }
-//
-//    @Test
-//    @DisplayName("노트북 모델을 찾지 못하면 에러를 반환한다.")
-//    void dd() {
-//        //given
-//        String model = "";
-//        MajorType majorType = MajorType.테스트;
-//        PageRequest pageRequest = PageRequest.of(0, 10);
-//
-//        //when
-//        reviewService.selectReviewWithMajor(model, majorType, pageRequest);
-//
-//        //then
-//        Assertions.assertThat().isEqualTo();
-//    }
+    @Test
+    @DisplayName("전공을 입력하지 않으면, 전공에 상관없이 리뷰를 반환한다.")
+    void dd() {
+        //given
+        String model = "";
+        PageRequest pageRequest = PageRequest.of(0, 10);
+
+        //when
+        List<Review> reviews = reviewService.selectReviewWithMajor(model, null, pageRequest);
+        // TODO: 2021/05/30 qureydsl 동적쿼리로 수정하기
+
+        //then
+        Assertions.assertThat(reviews.size()).isEqualTo(10);
+    }
 
 
 }

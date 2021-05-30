@@ -2,6 +2,7 @@ package com.github.ckdgus08.service;
 
 import com.github.ckdgus08.domain.Review;
 import com.github.ckdgus08.domain.enum_.MajorType;
+import com.github.ckdgus08.dto.ReviewDto;
 import com.github.ckdgus08.repository.ReviewRepository;
 import com.github.ckdgus08.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,22 @@ public class ReviewService {
                 .content(content)
                 .build();
 
+        return reviewRepository.save(review);
+    }
+
+    @Transactional
+    public Review createReview(ReviewDto reviewDto) {
+        Review review = new Review(notebookService.findByModel(reviewDto.getModel()),
+                userRepository.findByUserId(reviewDto.getUserId()),
+                MajorType.valueOf(reviewDto.getMajor()),
+                "detail",
+                reviewDto.getTitle(),
+                reviewDto.getContent());
+        return reviewRepository.save(review);
+    }
+
+    @Transactional
+    public Review saveReview(Review review) {
         return reviewRepository.save(review);
     }
 

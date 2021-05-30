@@ -2,6 +2,7 @@ package com.github.ckdgus08.apiController;
 
 import com.github.ckdgus08.domain.Review;
 import com.github.ckdgus08.domain.enum_.MajorType;
+import com.github.ckdgus08.dto.ReviewDto;
 import com.github.ckdgus08.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -29,13 +30,9 @@ public class ReviewApiController {
 
     @PostMapping("/v1/api/review")
     public void createReview(
-            @RequestParam(value = "userId") String userId,
-            @RequestParam(value = "major") String major,
-            @RequestParam(value = "model") String model,
-            @RequestParam(value = "title") String title,
-            @RequestParam(value = "content") String content
+            @RequestBody ReviewDto reviewDto
     ) {
-        reviewService.createReview(userId, major, model, title, content);
+        reviewService.createReview(reviewDto);
     }
 
     @PutMapping("/v1/api/review")
