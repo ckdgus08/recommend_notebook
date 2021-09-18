@@ -1,6 +1,5 @@
 package com.github.ckdgus08.controller;
 
-import com.github.ckdgus08.apiController.NotebookApiController;
 import com.github.ckdgus08.domain.Review;
 import com.github.ckdgus08.domain.enum_.MajorType;
 import com.github.ckdgus08.service.ReviewService;
@@ -14,17 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(NoteBookApiControllerTest.class)
@@ -38,10 +33,10 @@ public class NoteBookApiControllerTest {
 
     @BeforeEach
     private void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new NotebookApiController(reviewService))
-                .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true))
-                .alwaysDo(print())
-                .build();
+//        mockMvc = MockMvcBuilders.standaloneSetup(new NotebookApiController(reviewService))
+//                .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true))
+//                .alwaysDo(print())
+//                .build();
     }
 
     @Test
