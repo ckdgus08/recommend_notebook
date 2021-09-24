@@ -57,7 +57,7 @@
     margin: 30px auto 30px auto;
 }
 
-.move_button__type {
+.move_button__type, .move_button__type_2 {
     width: 90%;
     margin: 15px auto 0px auto;
     height: 60px;
@@ -97,7 +97,7 @@
     margin: 30px auto 30px auto;
 }
 
-.radio_group__radio input, .check_group__check input, .check_group__check_long input {
+.radio_group__radio input, .check_group__check input, .check_group__check_2 input, .check_group__check_long input {
     display: none;
 }
 
@@ -115,7 +115,7 @@
     cursor: pointer;
 }
 
-.check_group__check label {
+.check_group__check label, .check_group__check_2 label {
     display: inline-block;
     padding: 5px 20px;
     margin: 3px;
@@ -145,8 +145,9 @@
     cursor: pointer;
 }
 
-.check_group__check input:checked + label, .radio_group__radio input[type="radio"]:checked + label,
-.move_button__type:active, .check_group__check_long input:checked + label {
+.check_group__check input:checked + label, .check_group__check_2 input:checked + label,
+.radio_group__radio input[type="radio"]:checked + label,
+.move_button__type:active, .move_button__type_2:active, .check_group__check_long input:checked + label {
     border: solid 2px var(---blue);
     background-color: var(---blue);
     color: white;

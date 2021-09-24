@@ -16,18 +16,20 @@ window.onload = function () {
         let result = document.getElementById(parseIndexToString(index))
         let temp = '';
 
-        for (const value of input_value) {
-            if (value.getAttribute("data-value") != null) {
-                temp = value.getAttribute("data-value")
-                break;
+        if (index !== 6) {
+            for (const value of input_value) {
+                if (value.getAttribute("data-value") != null) {
+                    temp = value.getAttribute("data-value")
+                    break;
+                }
+                if (value.checked == true)
+                    if (temp == '')
+                        temp = value.value;
+                    else
+                        temp += ',' + value.value;
             }
-            if (value.checked == true)
-                if (temp == '')
-                    temp = value.value;
-                else
-                    temp += ',' + value.value;
+            result.value = temp;
         }
-        result.value = temp;
 
         for (const element of previous)
             element.classList.add("hidden")
@@ -71,6 +73,8 @@ function parseIndexToString(i) {
             return "inch";
         case 5 :
             return "price";
+        case 6 :
+            return "option";
     }
 }
 
@@ -175,11 +179,31 @@ function setPurposeTypeButtonClickEvent() {
     let check_group__check_vid = document.querySelector("div.main-block__check-group div.vid")
     let check_group__check_pro = document.querySelector("div.main-block__check-group div.pro")
 
+    let move_button__type_2 = document.querySelectorAll("button.move_button__type_2")
+    let move_button__type_aaa = document.querySelector("button.move_button__type_2.aaa")
+    let move_button__type_bbb = document.querySelector("button.move_button__type_2.bbb")
+    let move_button__type_ccc = document.querySelector("button.move_button__type_2.ccc")
+    let move_button__type_ddd = document.querySelector("button.move_button__type_2.ddd")
+    let move_button__type_eee = document.querySelector("button.move_button__type_2.eee")
+
+    let check_group__check_2 = document.querySelectorAll("div.main-block__check-group_2 div.check_group__check_2")
+    let check_group__check_aaa = document.querySelector("div.main-block__check-group_2 div.aaa")
+    let check_group__check_bbb = document.querySelector("div.main-block__check-group_2 div.bbb")
+    let check_group__check_ccc = document.querySelector("div.main-block__check-group_2 div.ccc")
+    let check_group__check_ddd = document.querySelector("div.main-block__check-group_2 div.ddd")
+    let check_group__check_eee = document.querySelector("div.main-block__check-group_2 div.eee")
+
     setClickEvent(move_button__type_all, check_group__check_all)
     setClickEvent(move_button__type_maj, check_group__check_maj)
     setClickEvent(move_button__type_gam, check_group__check_gam)
     setClickEvent(move_button__type_vid, check_group__check_vid)
     setClickEvent(move_button__type_pro, check_group__check_pro)
+
+    setClickEvent_2(move_button__type_aaa, check_group__check_aaa)
+    setClickEvent_2(move_button__type_bbb, check_group__check_bbb)
+    setClickEvent_2(move_button__type_ccc, check_group__check_ccc)
+    setClickEvent_2(move_button__type_ddd, check_group__check_ddd)
+    setClickEvent_2(move_button__type_eee, check_group__check_eee)
 
     function setClickEvent(check_, type_) {
         check_.onclick = function () {
@@ -187,6 +211,17 @@ function setPurposeTypeButtonClickEvent() {
                 ele.style.backgroundColor = "#272b30"
             check_.style.backgroundColor = "#369bde"
             for (let ele of check_group__check)
+                ele.classList.add("hidden")
+            type_.classList.remove("hidden")
+        }
+    }
+
+    function setClickEvent_2(check_, type_) {
+        check_.onclick = function () {
+            for (let ele of move_button__type_2)
+                ele.style.backgroundColor = "#272b30"
+            check_.style.backgroundColor = "#369bde"
+            for (let ele of check_group__check_2)
                 ele.classList.add("hidden")
             type_.classList.remove("hidden")
         }

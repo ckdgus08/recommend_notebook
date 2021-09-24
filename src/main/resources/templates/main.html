@@ -31,23 +31,15 @@
                     <button class="move_button__type pro">고사양</button>
                 </div>
             </div>
-            <div class="sub-block_content hidden" data-slide-index="3">
-                <div class="sub-block__move_button">
-                    <button class="move_button__type maj" style="background-color: #369bde;">무게</button>
-                    <button class="move_button__type all">가격</button>
-                    <button class="move_button__type gam">화면크기</button>
-                    <button class="move_button__type vid"></button>
-                    <button class="move_button__type pro"></button>
-                </div>
-            </div>
 
-            <div class="sub-block_content hidden" data-slide-index="4">
+            <div class="sub-block_title hidden" data-slide-index="6">기타 옵션(선택사항)</div>
+            <div class="sub-block_content hidden" data-slide-index="6">
                 <div class="sub-block__move_button">
-                    <button class="move_button__type maj" style="background-color: #369bde;">색상</button>
-                    <button class="move_button__type all">밝기</button>
-                    <button class="move_button__type gam"></button>
-                    <button class="move_button__type vid"></button>
-                    <button class="move_button__type pro"></button>
+                    <button class="move_button__type_2 aaa" style="background-color: #369bde;">최대밝기</button>
+                    <button class="move_button__type_2 bbb">배터리 용량</button>
+                    <button class="move_button__type_2 ccc">pd충전 여부</button>
+                    <button class="move_button__type_2 ddd">지문사용 여부</button>
+                    <button class="move_button__type_2 eee">저장공간 용량</button>
                 </div>
             </div>
         </div>
@@ -124,8 +116,56 @@
                 <b class="priceTag">10,000,000원</b>
             </div>
 
-            <div class="main-block__title hidden" data-slide-index="6">확정하시겠습니까?</div>
-            <div class="main-block__radio-group hidden" data-slide-index="6">
+            <div class="main-block__title hidden" data-slide-index="6"> 원하는 사양과 가장 가까운 것을 선택하세요!</div>
+            <div class="main-block__check-group_2 hidden" data-slide-index="6">
+                <div class="check_group__check_2 aaa">
+                    <input id="option_aaa_1" name="option1" type="radio" value="200">
+                    <label class="radio__label" for="option_aaa_1">200nits</label>
+                    <input id="option_aaa_2" name="option1" type="radio" value="250">
+                    <label class="radio__label" for="option_aaa_2">250nits</label>
+                    <input id="option_aaa_3" name="option1" type="radio" value="300">
+                    <label class="radio__label" for="option_aaa_3">300nits</label>
+                    <input id="option_aaa_4" name="option1" type="radio" value="400">
+                    <label class="radio__label" for="option_aaa_4">400nits</label>
+                </div>
+                <div class="check_group__check_2 bbb hidden">
+                    <input id="option_bbb_1" name="option2" type="radio" value="50">
+                    <label class="radio__label" for="option_bbb_1">50Wh</label>
+                    <input id="option_bbb_2" name="option2" type="radio" value="60">
+                    <label class="radio__label" for="option_bbb_2">60Wh</label>
+                    <input id="option_bbb_3" name="option2" type="radio" value="70">
+                    <label class="radio__label" for="option_bbb_3">70Wh</label>
+                    <input id="option_bbb_4" name="option2" type="radio" value="100">
+                    <label class="radio__label" for="option_bbb_4">100Wh</label>
+                </div>
+                <div class="check_group__check_2 ccc hidden">
+                    <input id="option_ccc_1" name="option3" type="radio" value="true">
+                    <label class="radio__label" for="option_ccc_1">가능</label>
+                    <input id="option_ccc_2" name="option3" type="radio" value="false">
+                    <label class="radio__label" for="option_ccc_2">불가능</label>
+                </div>
+                <div class="check_group__check_2 ddd hidden">
+                    <input id="option_ddd_1" name="option4" type="radio" value="true">
+                    <label class="radio__label" for="option_ddd_1">가능</label>
+                    <input id="option_ddd_2" name="option4" type="radio" value="false">
+                    <label class="radio__label" for="option_ddd_2">불가능</label>
+                </div>
+                <div class="check_group__check_2 eee hidden">
+                    <input id="option_eee_1" name="option5" type="radio" value="HDD 1TB">
+                    <label class="radio__label" for="option_eee_1">HDD 1TB</label>
+                    <input id="option_eee_2" name="option5" type="radio" value="HDD 2TB">
+                    <label class="radio__label" for="option_eee_2">HDD 2TB</label>
+                    <input id="option_eee_3" name="option5" type="radio" value="SSD 256GB">
+                    <label class="radio__label" for="option_eee_3">SSD 128GB</label>
+                    <input id="option_eee_4" name="option5" type="radio" value="SSD 512GB">
+                    <label class="radio__label" for="option_eee_4">SSD 512GB</label>
+                    <input id="option_eee_5" name="option5" type="radio" value="SSD 1TB">
+                    <label class="radio__label" for="option_eee_5">SSD 1TB</label>
+                </div>
+            </div>
+
+            <div class="main-block__title hidden" data-slide-index="7">확정하시겠습니까?</div>
+            <div class="main-block__radio-group hidden" data-slide-index="7">
                 <form action="/search" method="get" style="text-align: center; margin-top: 30px;">
                     <input id="major" name="_major" type="hidden" value="">
                     <input id="purpose" name="_purpose" type="hidden" value="">
