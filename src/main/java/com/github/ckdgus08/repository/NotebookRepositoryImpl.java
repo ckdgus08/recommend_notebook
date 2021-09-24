@@ -63,13 +63,13 @@ public class NotebookRepositoryImpl implements NotebookRepositoryCustom {
         BooleanBuilder nvidiaBuilder = new BooleanBuilder();
         BooleanBuilder amdBuilder = new BooleanBuilder();
 
-        if (condition.getCpuCondition().containsKey(GpuType.NVIDIA)) {
+        if (condition.getGpuCondition().containsKey(GpuType.NVIDIA)) {
             nvidiaBuilder.and(notebook.gpu.company.eq(GpuType.NVIDIA))
-                    .and(notebook.gpu.score.goe(condition.getCpuCondition().get(GpuType.NVIDIA).get()));
+                    .and(notebook.gpu.score.goe(condition.getGpuCondition().get(GpuType.NVIDIA).get()));
         }
-        if (condition.getCpuCondition().containsKey(GpuType.AMD)) {
+        if (condition.getGpuCondition().containsKey(GpuType.AMD)) {
             amdBuilder.and(notebook.gpu.company.eq(GpuType.AMD))
-                    .and(notebook.gpu.score.goe(condition.getCpuCondition().get(GpuType.AMD).get()));
+                    .and(notebook.gpu.score.goe(condition.getGpuCondition().get(GpuType.AMD).get()));
         }
 
         return (nvidiaBuilder.or(amdBuilder));
