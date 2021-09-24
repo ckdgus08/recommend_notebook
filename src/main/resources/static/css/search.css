@@ -110,7 +110,7 @@
     border: solid 2px var(---gray-blue);
     border-radius: 15px;
     font-size: 20px;
-    height: 50px;
+    min-height: 50px;
     font-weight: 500;
     color: var(---blue);
     word-break: break-all;
@@ -164,12 +164,13 @@ ul.review {
     display: table;
     border: solid 2px var(---gray-blue);
     border-radius: 15px;
+    width: 100%;
 }
 
 .review div {
     display: inherit;
     padding: 5px 20px;
-    height: 50px;
+    min-height: 20px;
     color: var(---blue);
     word-break: break-all;
     text-align: center;
@@ -197,8 +198,15 @@ div.review_content {
 
 div.review_content_deep {
     border: none;
-    height: content-box;
     font-size: 10px;
-    white-space: pre-line;
+    color: whitesmoke;
+    text-align: left;
 }
 
+.review_content_deep_prefix {
+    color: red;
+}
+
+.review_deep_line {
+    display: inline-block;
+}

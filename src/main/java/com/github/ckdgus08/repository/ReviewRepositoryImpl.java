@@ -25,8 +25,9 @@ public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
         return queryFactory.selectFrom(review)
                 .join(review.notebook, notebook).fetchJoin()
                 .where(
-                        notebook.model.eq(model),
-                        review.majorType.eq(majorType))
+                        notebook.model.eq(model)
+//                        ,review.majorType.eq(majorType)
+                )
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();

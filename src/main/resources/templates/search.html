@@ -23,10 +23,10 @@
             <div class="sub-block_title" data-slide-index="1" th:text="${'추천 사양 총 ' + notebook.size() + '개'}"></div>
             <div class="sub-block_content" data-slide-index="1">
                 <div class="sub-block__move_button">
-                    <button class="move_button__type purpose" th:text="${purpose}"></button>
+                    <button class="move_button__type purpose" th:text="${#strings.abbreviate(purpose,25)}"></button>
                     <button class="move_button__type maj" th:text="${cpuIntelRequire}"></button>
-                    <button class="move_button__type all" th:text="${gpuNvidiaRequire}"></button>
                     <button class="move_button__type gam" th:text="${cpuAmdRequire}"></button>
+                    <button class="move_button__type all" th:text="${gpuNvidiaRequire}"></button>
                     <button class="move_button__type vid" th:text="${gpuAmdRequire}"></button>
                     <button class="move_button__type pro" th:text="${ram}"></button>
                 </div>
@@ -44,7 +44,8 @@
                          th:text="${notebooks.getCpu().getModel() + ' ' + notebooks.getCpu().getScore()}"></div>
                     <div class="radio__label"
                          th:text="${notebooks.getGpu().getModel() + ' ' + notebooks.getGpu().getScore()}"></div>
-                    <div class="radio__label" th:text="${notebooks.getPrice()}"></div>
+                    <div class="radio__label"
+                         th:text="${#numbers.formatInteger(notebooks.getPrice(),0,'COMMA')}"></div>
 
                     <ul class="review" style="list-style: none">
 

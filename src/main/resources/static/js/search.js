@@ -1,5 +1,3 @@
-let now = [0, 1];
-
 window.onload = function () {
 
     let main_block = document.getElementsByClassName("slide__main-block");
@@ -13,11 +11,9 @@ window.onload = function () {
 
         chooseButtonElement.onclick = function () {
             let attribute = this.getAttribute("data-slide-index");
-            let index = now.indexOf(parseInt(attribute));
-
             let main_block_show = document.getElementsByClassName("slide__main-block");
             for (const mainBlockShowElement of main_block_show) {
-                if (!mainBlockShowElement.classList.contains('hidden') && parseInt(mainBlockShowElement.getAttribute("data-slide-index")) !== index) {
+                if (!mainBlockShowElement.classList.contains('hidden') && mainBlockShowElement.getAttribute("data-slide-index") !== attribute) {
                     mainBlockShowElement.classList.add('hidden');
 
                     let innerText = document.getElementById("main_progress").innerText;
@@ -45,7 +41,7 @@ function getReview(index, page) {
 
     $.ajax({
         method: 'GET',
-        url: '/v1/api/review/get?model=' + model + '&majorType=' + majorType + '&page=' + (page - 1),
+        url: '/v1/api/review?model=' + model + '&majorType=' + majorType + '&page=' + (page - 1),
         dataType: 'json',
         success: function (data) {
             if (data.length > 0) {
@@ -56,12 +52,13 @@ function getReview(index, page) {
                     list.innerHTML = "<div class='review_title'>" + data[i].title + "</div>"
                     list.innerHTML += "<div class='review_detail'>" + data[i].detail + "</div>"
                     list.innerHTML += "<div class='review_content'>" + data[i].content + "</div>"
-                    let deep_word = "";
+                    let review_str = "<div class='review_content_deep'>"
                     for (const keyword of keywords) {
-                        deep_word += keyword + "\n";
+                        if (keyword.length === 0) continue
+                        review_str += "<span class='review_deep_line'><span class='review_content_deep_prefix'>" + keyword[0] + "\t" + "</span><span>" + keyword[1] + "</span></span>";
                     }
-                    list.innerHTML += "<div class='review_content_deep'>" + deep_word + "</div>"
-
+                    review_str += "</div>"
+                    list.innerHTML += review_str
                     review.append(list);
                 }
             }
@@ -71,7 +68,7 @@ function getReview(index, page) {
 
 function deep(str) {
     let temp_index = 0;
-    let keywords = [];
+    let keywords = [[], [], [], [], []];
     $.ajax({
         async: false,
         method: 'GET',
@@ -80,7 +77,11 @@ function deep(str) {
         success: function (data) {
             if (data.length > 0) {
                 for (let element of data) {
-                    keywords[temp_index] = element;
+                    let split = element.toString().split(',');
+                    console.log(split)
+                    if (split.length <= 1) continue
+                    keywords[temp_index][0] = split[0];
+                    keywords[temp_index][1] = split[1];
                     temp_index++;
                 }
             }

@@ -43,43 +43,54 @@ public class SearchController {
 
         ScoreCondition scoreCondition = purposeService.selectScoreConditionFromPurposeTypeList(purposeType, Os.window, SpecLevel.최소사양);
 
+        System.out.println("scoreCondition = " + scoreCondition);
+
         Page<Notebook> notebook = notebookService.findNotebookByScoreCondition(scoreCondition, pageRequest, null);
 
         if (notebook.getContent().size() == 0) return "redirect:error";
 
         if (scoreCondition.getCpuCondition().containsKey(CpuType.INTEL)) {
-            String cpuIntelRequire = "인텔";
+            String cpuIntelRequire = "인텔 CPU";
             cpuIntelRequire += " " + scoreCondition.getCpuCondition().get(CpuType.INTEL).get() + "점";
 
             model.addAttribute("cpuIntelRequire", cpuIntelRequire);
+        } else {
+            model.addAttribute("cpuIntelRequire", "인텔 CPU 데이터 없음");
         }
         if (scoreCondition.getCpuCondition().containsKey(CpuType.AMD)) {
-            String cpuAmdRequire = "AMD";
+            String cpuAmdRequire = "AMD CPU";
             cpuAmdRequire += " " + scoreCondition.getCpuCondition().get(CpuType.AMD).get() + "점";
 
             model.addAttribute("cpuAmdRequire", cpuAmdRequire);
+        } else {
+            model.addAttribute("cpuAmdRequire", "AMD CPU 데이터 없음");
+
         }
 
         if (scoreCondition.getGpuCondition().containsKey(GpuType.NVIDIA)) {
-            String gpuNvidiaRequire = "NVIDIA";
+            String gpuNvidiaRequire = "NVIDIA GPU";
 
             gpuNvidiaRequire += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
 
             model.addAttribute("gpuNvidiaRequire", gpuNvidiaRequire);
+        } else {
+            model.addAttribute("gpuNvidiaRequire", "NVIDIA GPU 데이터 없음");
         }
 
         if (scoreCondition.getGpuCondition().containsKey(GpuType.AMD)) {
-            String gpuAmdRequire = "AMD";
+            String gpuAmdRequire = "AMD GPU";
 
-            gpuAmdRequire += " " + scoreCondition.getGpuCondition().get(GpuType.NVIDIA).get() + "점";
+            gpuAmdRequire += " " + scoreCondition.getGpuCondition().get(GpuType.AMD).get() + "점";
 
             model.addAttribute("gpuAmdRequire", gpuAmdRequire);
+        } else {
+            model.addAttribute("gpuAmdRequire", "AMD GPU 데이터 없음");
         }
 
         model.addAttribute("notebook", notebook.getContent());
         model.addAttribute("purpose", purpose);
         model.addAttribute("all", notebook);
-        model.addAttribute("ram", scoreCondition.getRam());
+        model.addAttribute("ram", scoreCondition.getRam() + "GB");
         return "search";
     }
 }

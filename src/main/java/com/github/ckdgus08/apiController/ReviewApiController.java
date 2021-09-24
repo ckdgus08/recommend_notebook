@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,7 +26,25 @@ public class ReviewApiController {
 
         Pageable pageable = PageRequest.of(page, 10);
 
-        return reviewService.selectReviewWithMajor(model, majorType, pageable);
+        List<Review> reviews = reviewService.selectReviewWithMajor(model, majorType, pageable);
+
+        List<Review> majorReview = reviews.stream()
+                .filter(it -> it.getMajorType() == majorType)
+                .collect(Collectors.toList());
+
+        List<Review> sorted = reviews.stream()
+                .filter(it -> it.getContent().length() <= 250)
+                .sorted(
+                        (o1, o2) -> o2.getContent().length() - o1.getContent().length()
+                )
+                .limit(5)
+                .collect(Collectors.toList());
+
+        if (majorReview.size() >= 1) {
+            return majorReview;
+        } else {
+            return sorted;
+        }
     }
 
     @PostMapping("/v1/api/review")
