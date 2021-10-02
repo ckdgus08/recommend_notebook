@@ -3872,11 +3872,11 @@ input[type="button"].btn-block {
 
 .input-group-text {
   display: -ms-flexbox;
-  display: flex;
   -ms-flex-align: center;
   align-items: center;
+  width: 30%;
+  margin: 3px;
   padding: 0.75rem 1rem;
-  margin-bottom: 0;
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5;

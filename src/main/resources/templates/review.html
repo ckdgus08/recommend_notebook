@@ -11,24 +11,58 @@
 
 <th:block layout:fragment="custom">
     <link rel="stylesheet" th:href="@{/css/review.css}">
-        <script th:src="@{/js/review.js}"></script>
+    <script th:src="@{/js/review.js}"></script>
 </th:block>
 
 
 <th:block layout:fragment="content">
 
     <div class="slide">
-        <!--        String userId, String major, String model, String title, String content-->
-        <input id="userId" required type="text">
-        <input id="major" required type="text">
-        <input id="model" required type="text">
-        <input id="title" required type="text">
-        <textarea autocomplete="off" id="content" placeholder="후기를 작성해주세요!" style="width: 150px; height: 150px;"
-                  type="text"></textarea>
-        <button id="submit">제출</button>
-    </div>
+        <div>
+            <label class="radio__label" for="model">모델명</label>
+            <input autocomplete="off" class="input-group-text" id="model" onkeyup="filter()"
+                   placeholder="노트북 모델명을 작성해주세요!"
+                   required
+                   style="font-size: 13px" type="text">
+            <th:block th:each="model : ${models}">
+                <div class="ggg hidden" th:text="${model}"></div>
+            </th:block>
+        </div>
+        <hr>
+        <div>
+            <label class="radio__label" for="userId">닉네임</label>
+            <input autocomplete="off" class="input-group-text" id="userId" placeholder="닉네임을 작성해주세요!" required
+                   type="text">
+        </div>
+        <div>
+            <label class="radio__label" for="major">전공</label>
+            <input autocomplete="off" class="input-group-text" id="major" onkeyup="filterMajor()"
+                   placeholder="전공을 작성해주세요!" required type="text">
+            <th:block th:each="major : ${majorTypes}">
+                <div class="ttt hidden" th:text="${major}"></div>
+            </th:block>
+        </div>
+        <div>
+            <label class="radio__label" for="title">제목</label>
+            <input autocomplete="off" class="input-group-text" id="title" placeholder="제목을 작성해주세요!" required
+                   type="text">
+        </div>
+        <div>
+            <label class="radio__label" for="content">내용</label>
+            <textarea autocomplete="off" class="input-group-text" id="content" placeholder="후기를 작성해주세요!"
+                      required style="resize: vertical" type="text"></textarea>
+        </div>
+        <div>
+            <button class="btn-info" id="submit">제출</button>
+        </div>
 
+        <div class="main-block__radio-group">
+            <div class="radio_group__radio">
+                <ul id="review" style="list-style: none">
 
+                </ul>
+            </div>
+        </div>
 </th:block>
 
 </html>

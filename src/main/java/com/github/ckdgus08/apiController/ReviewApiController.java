@@ -21,13 +21,12 @@ public class ReviewApiController {
     @GetMapping("/v1/api/review")
     public List<Review> selectReviewWithMajor(
             @RequestParam(value = "model") String model,
-            @RequestParam(value = "majorType") MajorType majorType,
+            @RequestParam(value = "majorType", defaultValue = "기타") MajorType majorType,
             @RequestParam(value = "page", defaultValue = "0") int page) {
 
         Pageable pageable = PageRequest.of(page, 10);
 
         List<Review> reviews = reviewService.selectReviewWithMajor(model, majorType, pageable);
-
         List<Review> majorReview = reviews.stream()
                 .filter(it -> it.getMajorType() == majorType)
                 .collect(Collectors.toList());
