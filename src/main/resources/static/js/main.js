@@ -22,23 +22,27 @@ window.onload = function () {
                     temp = value.getAttribute("data-value")
                     break;
                 }
-                if (value.checked == true)
-                    if (temp == '')
+                if (value.checked === true) {
+                    if (temp === '') {
                         temp = value.value;
-                    else
+                    } else {
                         temp += ',' + value.value;
+                    }
+                }
             }
             result.value = temp;
         }
 
-        for (const element of previous)
+        for (const element of previous) {
             element.classList.add("hidden")
-        for (const element of next)
+        }
+        for (const element of next) {
             element.classList.remove("hidden")
+        }
 
-
-        if (index == 1)
+        if (index == 1) {
             setNextPurpose(temp);
+        }
 
         move_button__left.classList.remove("hide")
         index++;
@@ -54,7 +58,7 @@ window.onload = function () {
         for (const element of next)
             element.classList.add("hidden")
 
-        if (index == 2)
+        if (index === 2)
             move_button__left.classList.add("hide")
         index--;
     }
