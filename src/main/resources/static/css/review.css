@@ -13,7 +13,7 @@
 }
 
 .slide {
-    /*display: flex;*/
+    display: flex;
     text-align: center;
     width: 1080px;
     margin: 30px auto 0 auto;
@@ -22,33 +22,24 @@
 }
 
 .slide__sub-block {
-    margin-right: 30px;
     font-size: 18px;
     text-align: center;
     position: relative;
-    width: 20%;
+    width: 50%;
 }
 
 .slide__main-block {
     text-align: center;
     position: relative;
-    width: 36%;
-    padding-left: 2%;
-    padding-right: 2%;
+    width: 50%;
 }
 
 .sub-block_content {
     text-align: center;
 }
 
-
 .sub-block_title {
     margin: 30px auto 30px auto;
-}
-
-.main-block__progress {
-
-    margin: 30px auto 0 auto;
 }
 
 .main-block__title {
@@ -98,7 +89,6 @@
 
 
 .main-block__radio-group, .main-block__check-group {
-    margin: 30px auto 30px auto;
 }
 
 .radio_group__radio input, .check_group__check input, .check_group__check_long input {
@@ -180,25 +170,21 @@ ul.review {
 div.review_title {
     border: none;
     font-size: 12px;
-    height: 15px;
     font-weight: bold;
 }
 
 div.review_detail {
     border: none;
-    height: 15px;
     font-size: 9px;
 }
 
 div.review_content {
     border: none;
-    height: content-box;
     font-size: 10px;
 }
 
 div.review_content_deep {
     border: none;
-    height: content-box;
     font-size: 10px;
     white-space: pre-line;
 }
@@ -223,7 +209,7 @@ ul.review {
 .review div {
     display: inherit;
     padding: 5px 20px;
-    min-height: 20px;
+    min-height: 5px;
     color: var(---blue);
     word-break: break-all;
     text-align: center;
@@ -232,26 +218,27 @@ ul.review {
 
 div.review_title {
     border: none;
+    height: fit-content;
     font-size: 12px;
-    height: 15px;
     font-weight: bold;
 }
 
 div.review_detail {
     border: none;
-    height: 15px;
+    height: fit-content;
     font-size: 9px;
 }
 
 div.review_content {
     border: none;
-    height: content-box;
+    height: fit-content;
     font-size: 10px;
 }
 
 div.review_content_deep {
     border: none;
     font-size: 10px;
+    height: fit-content;
     color: whitesmoke;
     text-align: left;
 }
